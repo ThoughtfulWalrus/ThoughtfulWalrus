@@ -1,6 +1,6 @@
 # Project Name - Distress App 
 
-> Thoughtful something else
+Thoughtful Walrus
 
 
 ## Team
