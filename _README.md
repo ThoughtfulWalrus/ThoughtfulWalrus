@@ -1,6 +1,7 @@
-# Project Name
+# Project Name - Distress App 
 
-ThoughtfulWalrus
+Thoughtful Walrus
+
 
 ## Team
 
