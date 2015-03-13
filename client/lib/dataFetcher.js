@@ -1,14 +1,8 @@
-/// Function: Given location, return the phone number of the closest police station
-/// Expects: latitude (float), longitude (float)
+/// Function: getNumber(lat, lon)
+/// lat,lon: coordinates formatted as floates
+/// Description: Given location, return the phone number of the closest police station
 /// Returns: String-formatted phone number
-/// NOTE: must pass a dom node to Google API.  See details below.
-var getPlaceId = function(lat, lon){
-
-  // https://maps.googleapis.com/maps/api/js?libraries=places
-
-  // <html>
-  //   <div id="myDiv"></div>
-  // </html>
+var getNumber = function(lat, lon){
 
   var loc = new google.maps.LatLng(lat, lon);
 
