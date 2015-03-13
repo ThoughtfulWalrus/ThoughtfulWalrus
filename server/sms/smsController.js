@@ -10,7 +10,7 @@ var twilio = require('twilio')(creds.accountSid, creds.authToken);
 exports.sendMessage = function(req, res) {
     // Get the phoneNumber property of the request.
     // This will be a phone number to send the text to. 
-    var recipientPhoneNumber = '9256832288';
+    var recipientPhoneNumber = '1112223333';
 
     // Twilio Credentials 
     var accountPhoneNumber = creds.accountPhoneNumber;
