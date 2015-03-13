@@ -18,11 +18,11 @@ var getNumber = function(lat, lon){
   // Initial nearbySearch call returns object contatining place_id
     // required parameter for nested getDetails call
   service.nearbySearch(request, function(results, status){
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
       var placeId = { placeId: results[0].place_id };
 
       service.getDetails(placeId, function(results, status){
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
           console.log('HELP MEEEEEE!', results.formatted_phone_number);
         }
       });
