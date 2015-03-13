@@ -5,11 +5,15 @@ var twilio = require('twilio');
 /// Description: This function will take a phone number to send a text message to 
 /// and use Twilio's node API to send a text message. 
 /// return: Nothing
-exports.sendMessage = function(recipientPhoneNumber) {
+exports.sendMessage = function(req, res) {
+    // Get the phoneNumber property of the request.
+    // This will be a phone number to send the text to. 
+    var recipientPhoneNumber = 'secret';
+
     // Twilio Credentials 
-    var accountSid = 'secretPlaceholder'; 
-    var authToken = 'secretPlaceholder'; 
-    var accountPhoneNumber = 'secretPlaceholder';
+    var accountSid = 'secret'; 
+    var authToken = 'secret'; 
+    var accountPhoneNumber = 'secret';
     
     //require the Twilio module and create a REST client 
     var client = require('twilio')(accountSid, authToken); 
