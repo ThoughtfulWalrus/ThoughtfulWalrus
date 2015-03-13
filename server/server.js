@@ -1,24 +1,15 @@
 var express = require('express');
-var twilio = require('twilio');
+var sms = require('./modules/smsHandler');
 
 var app = express();
 
-
 app.post('/Messages', function(req, res){
-    // Twilio Credentials 
-    var accountSid = ''; 
-    var authToken = ''; 
-     
-    //require the Twilio module and create a REST client 
-    var client = require('twilio')(accountSid, authToken); 
-     
-    client.messages.create({ 
-        to: "+", 
-        from: "+", 
-        body: "Hello World",   
-    }, function(err, message) { 
-        console.log(message.sid); 
-    });
+    // Get the phoneNumber property of the request.
+    // This will be a phone number to send the text to. 
+    var phoneNumber = req.body.phoneNumber;
+
+    // TODO: Handle the sending of a text message when a POST is made to /Messages.
+    sms.sendMessage(phoneNumber);
 });
 
 console.log('ThoughtfulWalrus is listening on 5000');
