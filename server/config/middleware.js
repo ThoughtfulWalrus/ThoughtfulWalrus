@@ -10,11 +10,8 @@ module.exports = function (app, express) {
   app.use(bodyParser.json());
   app.use(express.static(__dirname + '/../../client'));
 
+  app.use('/sms', smsRouter); // use sms router for all sms requests
 
-  app.use('/sms', smsRouter); // use user router for all user request
-
-  // authentication middleware used to decode token and made available on the request
-  //app.use('/api/links', helpers.decode);
   // inject our routers into their respective route files
   require('../sms/smsRoutes.js')(smsRouter);
 };
