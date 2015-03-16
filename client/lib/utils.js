@@ -20,7 +20,7 @@ var utils = (function() {
         },
 
         /// Function: storeLocation()
-        /// Description: Stores longitude and latitude to the window.
+        /// Description: Stores longitude and latitude to the window. takes callback
         /// returns: Nothing
         storeLocation: function(cb, position) {
           this.latitude = position.coords.latitude;
