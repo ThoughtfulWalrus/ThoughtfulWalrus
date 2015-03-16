@@ -22,4 +22,4 @@ exports.sendMessage = function(req, res) {
     }, function(err, message) { 
         console.log(message.sid); 
     });
-}
+};
