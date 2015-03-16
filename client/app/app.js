@@ -8,14 +8,16 @@ app.config(function($routeProvider, $httpProvider){
       authenticate: false
     })
     .when('/', {
-      templateUrl: 'home/home.html',
-      controller: 'HomeController',
+      templateUrl: 'app/home/home.html',
+      controller: 'HomeCtrl',
       authenticate: false
     })
     .otherwise({
-      templateUrl: 'home/home.html',
-      controller: 'HomeController',
+      templateUrl: 'app/home/home.html',
+      controller: 'HomeCtrl',
       authenticate: false
     });
 })
+
+
 
