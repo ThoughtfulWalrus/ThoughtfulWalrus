@@ -1,5 +1,5 @@
-(function() {
-    utils = {
+var utils = (function() {
+    var obj = {
 
         // TODO: Please assign these to the client/app. That way, client can use it
         // to call other functions. 
@@ -27,4 +27,5 @@
           longitude = position.coords.longitude;  
         }
     }
+    return obj;
 }());
