@@ -1,28 +1,25 @@
-var twilio = require('twilio');
+var creds = require('./../config/creds.js');
+var twilio = require('twilio')(creds.accountSid, creds.authToken);
 
-/// Function: sendMessage(recipientPhoneNumber)
-/// recipientPhoneNumber: A 10-digit phone number to send a text message to (i.e. 1112223333)
+/// Function: sendMessage(req, res)
+/// req: The request being sent. We want to phone number coming in to be a 10-digit number (i.e 1112223333)
+/// res: The response to send back
 /// Description: This function will take a phone number to send a text message to 
 /// and use Twilio's node API to send a text message. 
 /// return: Nothing
 exports.sendMessage = function(req, res) {
     // Get the phoneNumber property of the request.
     // This will be a phone number to send the text to. 
-    var recipientPhoneNumber = 'secret';
+    var recipientPhoneNumber = '1112223333';
 
     // Twilio Credentials 
-    var accountSid = 'secret'; 
-    var authToken = 'secret'; 
-    var accountPhoneNumber = 'secret';
-    
-    //require the Twilio module and create a REST client 
-    var client = require('twilio')(accountSid, authToken); 
+    var accountPhoneNumber = creds.accountPhoneNumber;
      
-    client.messages.create({ 
+    twilio.messages.create({ 
         to: "+1" + recipientPhoneNumber, 
         from: accountPhoneNumber, 
         body: "Hello World",   
     }, function(err, message) { 
-        console.error(message.sid); 
+        console.log(message.sid); 
     });
 }
