@@ -1,6 +1,6 @@
 var app = angular.module('distress', ['ngRoute']);
 
-app.config(function($routeProvider, $httpProvider){
+app.config(function($routeProvider){
   $routeProvider
     //note: instead of hardcoding the controller into the view, specifying the controller below will be enough!
     .when('/signup', {

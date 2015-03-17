@@ -1,9 +1,12 @@
 angular.module('distress')
-.controller('HomeCtrl', ['$scope', '$http', function($scope, $http){
+.controller('HomeCtrl', ['$scope', '$http', 'DistressButton', function($scope, $http, DistressButton){
 
   $scope.emergencyNumber = '';
 
   $scope.locationData = '';
+
+  //initializing to anon.
+  $scope.username = 'anon';
 
   //assumes that getLocation has already been run.
   //passes location and callback to dataFetcher method, sets emergencyNumber on the DOM
@@ -33,8 +36,9 @@ angular.module('distress')
     }.bind(self));
   };
 
+  //sends distress signal when the button is clicked
   $scope.distress = function(){
-    //todo
+    DistressButton.sendDistress($scope.username);
   }
 
   // initializes location and emergency number
