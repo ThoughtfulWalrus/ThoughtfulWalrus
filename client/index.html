@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>Distress</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="styles/style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
   </head>
@@ -15,9 +15,10 @@
     <!-- Required node for Google Maps API attribution -->
     <div id="myDiv"></div>
     <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
-    <div ng-view></div>
+    <div ui-view></div>
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
     <script src="lib/utils.js"></script>
     <script src="lib/dataFetcher.js"></script>
     <script src="app/app.js"></script>
