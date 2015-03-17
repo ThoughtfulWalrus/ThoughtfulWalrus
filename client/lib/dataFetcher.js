@@ -5,6 +5,64 @@
 ///
 var dataFetcher = {};
 
+dataFetcher.getPoliceMap = function(coords){
+  createMap(coords, 'police');
+};
+
+dataFetcher.getHospitalMap = function(coords){
+  createMap(coords, 'hospital');
+};
+
+
+var createMap = function(coords, type){
+
+  var infoWindow = new google.maps.InfoWindow();
+
+  var location = new google.maps.LatLng(coords.latitude,coords.longitude);
+
+  var map = new google.maps.Map(document.getElementById('myDiv'), {
+    center: location,
+    zoom: 15
+  });
+
+  var request = {
+    location: location,
+    radius: '1000',
+    types: [type]
+  };
+
+  service = new google.maps.places.PlacesService(map);
+  service.nearbySearch(request, callback);
+
+  function callback(results, status) {
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+      for (var i = 0; i < results.length; i++) {
+        var place = results[i];
+        createMarker(results[i]);
+      }
+    }
+  }
+
+  function createMarker(place) {
+    var placeLoc = place.geometry.location;
+    var marker = new google.maps.Marker({
+      map: map,
+      position: place.geometry.location
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+        service.getDetails(place, function(result, status) {
+          if (status != google.maps.places.PlacesServiceStatus.OK) {
+            alert(status);
+            return;
+          }
+          infoWindow.setContent(result.name + '<br>' + result.formatted_phone_number);
+          infoWindow.open(map, marker);
+        });
+      });
+  }
+};
+
 dataFetcher.getEmergencyNumber = function(coords, callback){
 
   var data = {};
