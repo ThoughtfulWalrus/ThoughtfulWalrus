@@ -15,6 +15,11 @@ module.exports.sendMessages = function(req, res) {
     var contactList = []; //req.body.contactList;
     var twilioReponses = [];
 
+    // If there are no contacts to send to, send back a 200 response with an empty array.
+    if(contactList.length === 0){
+        res.send(200, twilioReponses);
+    }
+
     // This is a counter to tell us when we have hit the last contact to text
     // SUPER hacky, but other than forcing the user to send multiple POST requests,
     // and callback hell, this is how we are doing this. 
@@ -44,15 +49,15 @@ module.exports.sendMessages = function(req, res) {
         // We need to preserve the index so using an IIFE allows us to bind the current value
         // of index to addMessageToResponse. What happens when we move onto the next iteration 
         // of the loop? addMessageToResponse gets overwritten! Well that sucks. 
-        // This is where IIFE #2 comes in, we bind to the 'fin' function this instance of addMessageToResponse
-        // And so when it is eventually called, it has bound to it the correct function. 
+        // This is where IIFE #2 comes in, we bind to the 'fin' function this instance of addMessageToResponse.
+        // You are probably wondering, but doesn't fin run only at the end of a promise and thus the function
+        // we have bound should be overwritten? The IIFE #2 executes immediately, so 'fin'
+        // sees a function that it will call later, but bound to that function is the correct
+        // addMessageToResponse. And so when it is eventually called, it has bound to it the correct function. 
         var addMessageToResponse = (function(idx){
-            return function(status, message){
-                twilioReponses[idx] = {status: status, message: message};
-                if(counter === contactList.length - 1){
-                    res.send(twilioReponses);
-                }
-                counter++;
+            return function(twilioResponse){
+                twilioReponses[idx] = { status: twilioResponse.status,
+                                        message: twilioResponse.message};
             }
         })(i);
 
@@ -64,9 +69,16 @@ module.exports.sendMessages = function(req, res) {
             twilioResponse.status = 'FAIL';
             twilioResponse.message = error.message;
         }).fin((function(callback){
+
             return function(){
-              callback(twilioResponse.status, twilioResponse.message);
+              callback(twilioResponse);
+
+              if(counter === contactList.length - 1){
+                  res.send(twilioReponses);
+              }
+              counter++;
             }
+
         })(addMessageToResponse));
     };
 };
