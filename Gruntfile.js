@@ -9,7 +9,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-express-server');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-mocha');
-
+  grunt.loadNpmTasks('grunt-nodemon');
 
   // in what order should the files be concatenated
   var clientIncludeOrder = require('./include.conf.js');
@@ -72,11 +72,9 @@ module.exports = function(grunt) {
     },
 
     // configure the server
-    express: {
+    nodemon: {
       dev: {
-        options: {
-          script: 'dist/server/server.js'
-        }
+        script: 'server/server.js'
       }
     },
 
@@ -140,5 +138,5 @@ module.exports = function(grunt) {
   grunt.registerTask('ci', [ 'karma:ci', 'express:dev' ]);
 
   // Start watching and run tests when files change
-  grunt.registerTask('default', [ 'build', 'express:dev', 'karma:watch:start', 'watch' ]);
+  grunt.registerTask('default', [ 'build', 'nodemon', 'karma:watch:start', 'watch' ]);
 };
