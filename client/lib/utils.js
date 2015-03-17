@@ -20,11 +20,12 @@ var utils = (function() {
         },
 
         /// Function: storeLocation()
-        /// Description: Stores longitude and latitude to the window. takes callback
+        /// Description: Stores longitude, latitude, and google maps link to the window. takes callback
         /// returns: Nothing
         storeLocation: function(cb, position) {
           this.latitude = position.coords.latitude;
           this.longitude = position.coords.longitude;
+          this.mapLink = 'http://maps.google.com/?q=' + this.latitude + ',' + this.longitude;
           cb(this.latitude, this.longitude);
         }
     };
