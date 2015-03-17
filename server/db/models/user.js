@@ -6,12 +6,15 @@ var userSchema = mongoose.Schema({
     type: String, 
     index: { unique: true },
   }, 
+  password:{
+    type: String, 
+    index: { unique: true },
+  },
   emergencyContacts:[{ 
       contactName: String, 
       contactNumber: String
   }],
 });
-
 
 var User = mongoose.model('User', userSchema);
 
