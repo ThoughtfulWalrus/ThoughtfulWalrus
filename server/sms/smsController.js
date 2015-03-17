@@ -12,7 +12,7 @@ var twilio = require('twilio')(creds.accountSid, creds.authToken);
 exports.sendMessages = function(req, res) {
     // Get the phoneNumber property of the request.
     // This will be a phone number to send the text to. 
-    var contactList = ['111111','9256832288','2222222','9256832288','9256832288','2222222','2222222','9256832288','2222222','2222222','2222222','2222222','2222222','2222222','2222222','2222222','2222222','2222222']; //req.body.contactList;
+    var contactList = []; //req.body.contactList;
     var twilioReponses = [];
 
     // This is a counter to tell us when we have hit the last contact to text
