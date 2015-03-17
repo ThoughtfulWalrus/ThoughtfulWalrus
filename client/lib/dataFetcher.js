@@ -30,7 +30,7 @@ dataFetcher.getEmergencyNumber = function(coords, callback){
         if (status === google.maps.places.PlacesServiceStatus.OK) {
 
           // Build data object:
-          data.country = results.formatted_address.split(' ').slice(-1)[0];
+          data.country = results.formatted_address.split(',').slice(-1)[0].trim();
           data.emergencyNumber = nums[data.country];
           data.policeNumber = results.formatted_phone_number;
           callback(data.emergencyNumber);
