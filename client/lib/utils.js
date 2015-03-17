@@ -5,6 +5,7 @@ var utils = (function() {
         // to call other functions.
         latitude: 0,
         longitude: 0,
+        mapLink: '',
 
         /// Function: getLocation()
         /// Description: Retrieves the geolocation of browser, if supported.

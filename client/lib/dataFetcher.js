@@ -3,9 +3,6 @@
 /// Description: Given location, return the phone number of the closest police station
 /// Returns: String-formatted phone number
 ///
-
-var coords = ({latitude: 37.7837676, longitude: -122.4090146});
-
 var dataFetcher = {};
 
 dataFetcher.getEmergencyNumber = function(coords, callback){
