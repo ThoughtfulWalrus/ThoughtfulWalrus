@@ -10,7 +10,7 @@ dataFetcher.getEmergencyNumber = function(coords, callback){
   var data = {};
 
   var loc = new google.maps.LatLng(coords.latitude, coords.longitude);
-
+  console.log('heyyyyy: ' + loc)
   var request = {
     location: loc,
     radius: '1000',
@@ -33,6 +33,7 @@ dataFetcher.getEmergencyNumber = function(coords, callback){
           data.country = results.formatted_address.split(',').slice(-1)[0].trim();
           data.emergencyNumber = nums[data.country];
           data.policeNumber = results.formatted_phone_number;
+          console.log(data.emergencyNumber);
           callback(data.emergencyNumber);
         }
       });
