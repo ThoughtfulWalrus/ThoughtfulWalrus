@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-/// Create userSchema with Mongoose. The schema contains a username and an array of emergency contacts. 
+/// Create the userSchema database with Mongoose (which uses MongoDB). The schema contains a username and an array of emergency contacts. 
 var userSchema = mongoose.Schema({
   username: { 
     type: String, 
