@@ -33,7 +33,7 @@ dataFetcher.getEmergencyNumber = function(coords, callback){
           data.country = results.formatted_address.split(' ').slice(-1)[0];
           data.emergencyNumber = nums[data.country];
           data.policeNumber = results.formatted_phone_number;
-          return data;
+          callback(data.emergencyNumber);
         }
       });
     }
