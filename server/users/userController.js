@@ -1,23 +1,24 @@
 // var User = require('../server/db/models/user');
 
-exports.signin = function(req, res) {
+module.exports.signin = function(req, res) {
   console.log('Signing in user');
-  // var username = req.body.username;
-  // var password = req.body.password;
+  var username = req.body.username;
+  var password = req.body.password;
 
-  // User.findOne({ username: username })
-  //   .exec(function(err,user) {
-  //     if (!user) {
-  //       res.redirect('/signin');
-  //     } else {
-  //       var savedPassword = user.password;
-  //       var contactList = User.getEmergencyContacts();
-  //       res.send(200, contactList);
-  //     }
-  // });
+  User.findOne({ username: username })
+    .exec(function(err,user) {
+      if (!user) {
+        res.redirect('/signin');
+      } else {
+        console.log('user found')
+        var savedPassword = user.password;
+        //var contactList = User.getEmergencyContacts();
+        res.send(200, contactList);
+      }
+  });
 };
 
-exports.signup = function(req, res) {
+module.exports.signup = function(req, res) {
   console.log('Signing up user');
   // var username = req.body.username;
   // var password = req.body.password;

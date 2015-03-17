@@ -9,7 +9,7 @@ var twilio = require('twilio')(creds.accountSid, creds.authToken);
 /// if the SMS was successful. Otherwise, it will send a string containing the twilio error code 
 /// and message. 
 /// return: An array of responses from twilio API, each containing {status, message}
-exports.sendMessages = function(req, res) {
+module.exports.sendMessages = function(req, res) {
     // Get the phoneNumber property of the request.
     // This will be a phone number to send the text to. 
     var contactList = []; //req.body.contactList;
