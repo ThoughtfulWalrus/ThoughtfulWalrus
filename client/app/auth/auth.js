@@ -1,7 +1,12 @@
 angular.module('distress')
+
+//creates a factory call 'Auth' which we can
+//inject into our controllers
 .factory('Auth', function($http, $location){
   var auth = {};
 
+  //sends a request to the /user/signin route of the server,
+  //still need to see what the server will respond with
   auth.signin = function(user){
     return $http({
       method: 'GET',
@@ -12,6 +17,8 @@ angular.module('distress')
     });
   };
 
+  //sends a request to the /user/signup route of the server,
+  //still need to see what the server will respond with
   auth.signup = function(user){
     return $http({
       method: 'POST',
@@ -22,8 +29,10 @@ angular.module('distress')
     });
   };
 
+  //needs to delete token/remove cookie/undo however we do authentication.
   auth.logout = function(){
     $location.path = '/signin'
+    //TODO
   };
 
   return auth;
