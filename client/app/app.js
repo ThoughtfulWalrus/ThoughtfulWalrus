@@ -10,7 +10,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       })
       .state('signup', {
           url: '/signup',
-          templateUrl: '/signup/signup.html',
+          templateUrl: 'app/signup/signup.html',
           controller: 'SignupController',
           authenticate: false
       });
