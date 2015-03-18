@@ -5,6 +5,8 @@ var app = express();
 var mongoose = require('mongoose');
 var User = require('./db/models/user.js');
 
+var port = process.env.PORT || 5000;
+
 // configure our server with all the middleware and and routing
 require('./config/middleware.js')(app, express);
 
@@ -15,5 +17,5 @@ app.get('/', function(req, res) {
     res.end();
 });
 
-console.log('ThoughtfulWalrus is listening on 5000');
-app.listen(5000);
+console.log('ThoughtfulWalrus is listening on ' + port);
+app.listen(port);
