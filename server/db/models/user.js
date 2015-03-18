@@ -7,8 +7,7 @@ var userSchema = mongoose.Schema({
     index: { unique: true },
   }, 
   password:{
-    type: String, 
-    index: { unique: true },
+    type: String
   },
   emergencyContacts:[{ 
       contactName: String, 
