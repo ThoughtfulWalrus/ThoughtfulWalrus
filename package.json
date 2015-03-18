@@ -6,7 +6,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "test": "node server/server.js& ./node_modules/.bin/mocha --bail test/ServerSpec.js; pkill -n node;"
+    "test": "node server/server.js & ./node_modules/.bin/mocha --bail test/ServerSpec.js; pkill -n node;"
   },
   "devDependencies": {
     "chai": "^2.1.2",
@@ -21,6 +21,7 @@
     "grunt-karma": "^0.10.1",
     "grunt-mocha": "^0.4.12",
     "grunt-nodemon": "^0.4.0",
+    "grunt-shell": "^1.1.2",
     "karma": "^0.12.31",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.1.7",
