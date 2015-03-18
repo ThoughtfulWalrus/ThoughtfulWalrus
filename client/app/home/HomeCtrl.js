@@ -1,9 +1,9 @@
 angular.module('distress')
-.controller('HomeCtrl', ['$scope', function($scope){
+.controller('HomeCtrl', ['$scope', '$http', function($scope, $http){
 
-  $scope.emergencyNumber = 'placeholder for emergency number';
+  $scope.emergencyNumber = '';
 
-  $scope.locationData = 'placeholder for location';
+  $scope.locationData = '';
 
   //function which uses the dataFetcher object to grab the emergency number
   //assumes that getLocation has already been run.
@@ -12,7 +12,7 @@ angular.module('distress')
     var self = this;
     var location = {longitude: utils.longitude, latitude: utils.latitude};
     dataFetcher.getEmergencyNumber(location, function(emergencyNumber){
-      self.emergencyNumber = emergencyNumber;
+      this.$apply(function(){this.emergencyNumber = emergencyNumber}.bind(this));
     }.bind(self));
   };
 
@@ -21,9 +21,19 @@ angular.module('distress')
   $scope.getLocation = function(){
     var self = this;
     utils.getLocation(function(lat, lon){
-      this.locationData = 'latitude: ' + lat + ' longitude: ' + lon;
+      this.$apply(function(){this.locationData = 'latitude: ' + lat + ' longitude: ' + lon;}.bind(this));
+      this.getEmergencyNumber()
     }.bind(self));
   };
 
+  $scope.distress = function(){
+
+  }
+
+  // initializes location and emergency number
+  $scope.init = function(){
+    $scope.getLocation();
+  }
+  $scope.init();
 }]);
 
