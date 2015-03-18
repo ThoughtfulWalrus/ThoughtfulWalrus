@@ -1,6 +1,6 @@
 angular.module('distress')
 
-//creates a factory call 'Auth' which we can
+//creates a factory called 'Auth' which we can
 //inject into our controllers
 .factory('Auth', function($http, $location){
   var auth = {};
