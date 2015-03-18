@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var app = angular.module('distress', ['ui.router']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
