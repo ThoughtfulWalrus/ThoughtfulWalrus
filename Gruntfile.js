@@ -8,6 +8,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-mocha');
+  grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
 
   // in what order should the files be concatenated
@@ -77,6 +78,15 @@ module.exports = function(grunt) {
       }
     },
 
+    shell: {
+            options: {
+                stderr: false
+            },
+            serverTest: {
+                command: 'node server/server.js & ./node_modules/.bin/mocha --bail test/ServerSpec.js; pkill -n node;'
+            }
+        },
+
     // configure karma
     karma: {
       options: {
@@ -131,7 +141,7 @@ module.exports = function(grunt) {
   grunt.registerTask('testClient', [ 'karma:single' ]);
 
   // Run all tests once
-  grunt.registerTask('test', [ 'testClient']);
+  grunt.registerTask('test', [ 'testClient', 'shell:serverTest']);
 
   // Run all tests once
   grunt.registerTask('ci', [ 'karma:ci', 'nodemon' ]);
