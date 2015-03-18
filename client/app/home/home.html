@@ -1,6 +1,18 @@
 <h1>Hello from home!</h1>
 
-<div id="home" ng-controller="HomeCtrl" ng-click="getLocation()">
+<div class="home">
   {{locationData}}
+</div>
+
+<div class="home">
   {{emergencyNumber}}
+</div>
+
+<div class="home">
+  <button type="button" ng-click="distress()">Distress!</button>
+</div>
+
+
+<div class="home">
+  <button type="button" ng-click="police()">Police!</button>
 </div>
