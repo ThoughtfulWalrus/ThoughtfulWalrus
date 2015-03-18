@@ -5,6 +5,9 @@
   "main": "app.js",
   "author": "",
   "license": "ISC",
+  "scripts": {
+    "test": "node server/server.js& ./node_modules/.bin/mocha --bail test/ServerSpec.js; pkill -n node;"
+  },
   "devDependencies": {
     "chai": "^2.1.2",
     "express": "^4.12.2",
@@ -23,7 +26,8 @@
     "karma-chrome-launcher": "^0.1.7",
     "karma-coverage": "^0.2.7",
     "karma-mocha": "^0.1.10",
-    "mocha": "^2.2.1"
+    "mocha": "^2.2.1",
+    "request": "^2.53.0"
   },
   "dependencies": {
     "body-parser": "^1.12.0",
