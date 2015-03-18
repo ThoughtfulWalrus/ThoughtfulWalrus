@@ -17,7 +17,7 @@ angular.module('distress')
 
     DataFetcher.getEmergencyNumber(location, function(emergencyNumber){
       this.$apply(function(){
-        this.emergencyNumber = emergencyNumber
+        this.emergencyNumber = emergencyNumber;
       }.bind(this));
     }.bind(self));
   };
@@ -32,25 +32,25 @@ angular.module('distress')
         this.locationData = 'latitude: ' + lat + ' longitude: ' + lon;
       }.bind(this));
       //once we get location data, we get emergency number
-      this.getEmergencyNumber()
+      this.getEmergencyNumber();
     }.bind(self));
   };
 
   //sends distress signal when the button is clicked
   $scope.distress = function(){
     DistressButton.sendDistress($scope.username);
-  }
+  };
 
   //gets police station map
   $scope.police = function(){
     var location = {longitude: GeoLocation.longitude, latitude: GeoLocation.latitude};
     DataFetcher.getPoliceMap(location);
-  }
+  };
 
   // initializes location and emergency number
   $scope.init = function(){
     $scope.getLocation();
-  }
+  };
   $scope.init();
 }]);
 
