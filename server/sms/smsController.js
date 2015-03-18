@@ -1,86 +1,93 @@
 var creds = require('./../config/creds.js');
 var twilio = require('twilio')(creds.accountSid, creds.authToken);
+var User = require('../db/models/user');
 
 /// Function: sendMessage(req, res)
-/// req: The request being sent. We want to phone number coming in to be a 10-digit number (i.e 1112223333)
-/// res: The response to send back
-/// Description: This function will take a phone number to send a text message to 
-/// and use Twilio's node API to send a text message. It will send back a 200 code 
-/// if the SMS was successful. Otherwise, it will send a string containing the twilio error code 
-/// and message. 
+/// req: The request being sent. All that is needed in the request is the username
+/// res: The response to send back. 
+/// Description: This function will take a username and use Twilio's node API 
+/// to send a text message to every number in the users emergency contact list.
+/// It will send back a 200 code if the SMS was successful.
 /// return: An array of responses from twilio API, each containing {status, message}
 module.exports.sendMessages = function(req, res) {
-    // Get the phoneNumber property of the request.
-    // This will be a phone number to send the text to. 
-    var contactList = []; //req.body.contactList;
-    var twilioReponses = [];
+    var username = req.body.username;
 
-    // If there are no contacts to send to, send back a 200 response with an empty array.
-    if(contactList.length === 0){
-        res.send(200, twilioReponses);
-    }
+    // Find the user in the database and determine if they are authorized
+    User.findOne({ username: username })
+      .exec(function(err,user) {
+        if (!user) {
+          res.status(401).send('Not Authorized');
+        } 
+        else {
+          var twilioReponses = [];
 
-    // This is a counter to tell us when we have hit the last contact to text
-    // SUPER hacky, but other than forcing the user to send multiple POST requests,
-    // and callback hell, this is how we are doing this. 
-    var counter = 0;
+          // If there are no contacts to send to, send back a 200 response with an empty array.
+          if(user.emergencyContacts.length === 0){
+              res.status(200).send(twilioReponses);
+          }
 
-    // For every contact in our list, text them
-    for(var i = 0; i < contactList.length;i++){
-        var contact = contactList[i];
+          // This is a counter to tell us when we have sent the last text
+          var counter = 0;
 
-        var twilioResponse = {
-            status: 'UNKNOWN',
-            message: 'UNKNOWN'
-        };
+          // For every contact in our list, text them
+          for(var i = 0; i < user.emergencyContacts.length;i++){
+              var contactNumber = user.emergencyContacts[i].contactNumber;
 
-        var promise = sendMessage(contact);
+              var twilioResponse = {
+                  status: 'UNKNOWN',
+                  message: 'UNKNOWN'
+              };
 
-        // Ok so, this shit is crazy. So let me break it down:
-        // 1. The promise is asynchronous, so we have no idea when it will be fufilled.
-        // 2. We need to preserve the order, aka if I text [mom, dad], I had better not get [dad, mom]
-        // 3. Each text finishes at a different time, there is no guarantee of order
-        //      - An example is, successful texts take significantly longer than failures
-        // 4. This 'for' loop will execute almost immediately, so index will hit max and if we
-        // try to use the index in the 'then' clause, it might be the max
-        // SOLUTION: IIFE's
-        // We have 2 IIFE's here, one in the function addMessageToResponse, and another as
-        // the final function to execute when the promise has been fufilled. 
-        // We need to preserve the index so using an IIFE allows us to bind the current value
-        // of index to addMessageToResponse. What happens when we move onto the next iteration 
-        // of the loop? addMessageToResponse gets overwritten! Well that sucks. 
-        // This is where IIFE #2 comes in, we bind to the 'fin' function this instance of addMessageToResponse.
-        // You are probably wondering, but doesn't fin run only at the end of a promise and thus the function
-        // we have bound should be overwritten? The IIFE #2 executes immediately, so 'fin'
-        // sees a function that it will call later, but bound to that function is the correct
-        // addMessageToResponse. And so when it is eventually called, it has bound to it the correct function. 
-        var addMessageToResponse = (function(idx){
-            return function(twilioResponse){
-                twilioReponses[idx] = { status: twilioResponse.status,
-                                        message: twilioResponse.message};
-            }
-        })(i);
+              var promise = sendMessage(contactNumber);
 
-        promise.then(function(message) {
-            twilioResponse.status = 'SUCCESS';
-            twilioResponse.message = message.sid;
+              // Ok so, this shit is crazy. So let me break it down:
+              // 1. The promise is asynchronous.
+              // 2. We need to preserve the order the texts were sent in our response
+              //    - (i.e.) If I text [mom, dad], I had better not get [dad, mom]
+              // 3. Each text finishes at a different time.
+              //    - Successful texts take 10x longer than failures to return
+              // 4. The 'for' loop's iteration will increase before a promise is fufilled.
+              //    - Basically, 'i' could be 10 when the first promise is fufilled. 
+              // SOLUTION: 2 IIFE's
+              // 1. To bind the current index in the loop for later use
+              // 2. To bind the function to call in the 'finally (fin)' clause of our promise
+              // We need to preserve the index so using an IIFE allows us to bind the current value
+              // of index to addMessageToResponse. What happens when we move onto the next iteration 
+              // of the loop? addMessageToResponse gets overwritten! Well that sucks. 
+              // This is where IIFE #2 comes in. We bind to the 'fin' clause this instance of addMessageToResponse.
+              // You are probably wondering, but doesn't fin run only at the end of a promise and thus the function
+              // we have bound should be overwritten? The IIFE #2 executes immediately, so 'fin'
+              // sees a function that it will call later, but bound to that function is the correct
+              // addMessageToResponse. And so when it is eventually called, it has the correct function bound to it. 
+              var addMessageToResponse = (function(idx){
+                  return function(twilioResponse){
+                      twilioReponses[idx] = { status: twilioResponse.status,
+                                              message: twilioResponse.message};
+                  }
+              })(i);
 
-        },function(error) {
-            twilioResponse.status = 'FAIL';
-            twilioResponse.message = error.message;
-        }).fin((function(callback){
+              promise.then(function(message) {
+                  twilioResponse.status = 'SUCCESS';
+                  twilioResponse.message = message.sid;
 
-            return function(){
-              callback(twilioResponse);
+              },function(error) {
+                  twilioResponse.status = 'FAIL';
+                  twilioResponse.message = error.message;
+              }).fin((function(callback){
 
-              if(counter === contactList.length - 1){
-                  res.send(twilioReponses);
-              }
-              counter++;
-            }
+                  return function(){
+                    callback(twilioResponse);
 
-        })(addMessageToResponse));
-    };
+                    if(counter === user.emergencyContacts.length - 1){
+                        res.status(200).send(twilioReponses);
+                    }
+                    counter++;
+                  }
+
+              })(addMessageToResponse));
+          };
+        }
+    });
 };
 
 /// Function: sendMessage(recipientPhoneNumber)

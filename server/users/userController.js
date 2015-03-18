@@ -1,6 +1,5 @@
 var User = require('../db/models/user');
 
-
 module.exports.signin = function(req, res) {
   var username = req.body.username;
 
@@ -9,10 +8,10 @@ module.exports.signin = function(req, res) {
   User.findOne({ username: username })
     .exec(function(err,user) {
       if (!user) {
-        res.redirect('/signin');
+        res.status(400).send('Bad request: User not found');
       } else {
         console.log('Successful login');
-        res.send(200, user.emergencyContacts);
+        res.status(200).send(user);
       }
   });
 };
@@ -33,13 +32,12 @@ module.exports.signup = function(req, res) {
         });
         newUser.save(function(err, newUser) {
           if (err) {
-            res.send(500, err);
+            res.status(500).send(err);
           }
-          res.redirect('/');
+          res.status(200).send(newUser);
         });
       } else {
-        console.log('Account already exists');
-        res.redirect('/signup');
+        res.status(409).send('Account already exists');
       }
     });
 };
@@ -54,17 +52,28 @@ module.exports.addContact = function(req, res) {
   User.findOne({ username: username })
     .exec(function(err,user) {
       if (!user) {
-        res.redirect('/signin');
+        res.status(401).send('Unauthorized: User not logged in');
       } else {
-        user.emergencyContacts.push({ 
+        var newContact = { 
           contactName: contactName, 
-          contactNumber:contactNumber
-        });
+          contactNumber: contactNumber
+        };
 
-        user.save(function(err,link){
-          res.redirect('/');
-          return;
-        });
+        var inContactList = user.emergencyContacts.map(function(contact) { 
+                              return contact.contactNumber; 
+                            }).indexOf(contactNumber);
+
+        // Check if the contact already exists
+        if(inContactList === -1){
+          user.emergencyContacts.push(newContact);
+
+          user.save(function(err,user){
+            res.status(200).send(user);
+          });
+        }
+        else{
+          res.status(409).send('Resource exists: Contact already in list');
+        }
       }
   });
 };
