@@ -31,7 +31,7 @@ angular.module('distress')
 
   //needs to delete token/remove cookie/undo however we do authentication.
   auth.logout = function(){
-    $location.path = '/signin'
+    $location.path = '/signin';
     //TODO
   };
 
