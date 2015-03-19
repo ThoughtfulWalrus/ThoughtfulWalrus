@@ -1,6 +1,7 @@
-angular.module('distress')
-.controller('HomeCtrl', ['$scope', '$http', 'DistressButton', 'DataFetcher', 'GeoLocation', function($scope, $http, DistressButton, DataFetcher, GeoLocation){
+HomeCtrl.$inject = ['$scope', '$http', 'DistressButton', 'DataFetcher', 'GeoLocation']
+angular.module('distress').controller('HomeCtrl', HomeCtrl);
 
+function HomeCtrl($scope, $http, DistressButton, DataFetcher, GeoLocation){
   $scope.emergencyNumber = '';
   $scope.locationData = '';
   $scope.username = 'anon';
@@ -24,6 +25,7 @@ angular.module('distress')
   //calls getEmergencyNumber after the location has been found
   $scope.getLocation = function(){
     var self = this;
+
     GeoLocation.getLocation(function(lat, lon){
       this.$apply(function(){
         this.locationData = 'latitude: ' + lat + ' longitude: ' + lon;
@@ -49,5 +51,4 @@ angular.module('distress')
     $scope.getLocation();
   };
   $scope.init();
-}]);
-
+}
