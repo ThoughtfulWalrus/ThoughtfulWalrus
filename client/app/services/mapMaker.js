@@ -1,9 +1,9 @@
 angular.module('distress')
 .factory('MapMaker', function(){
-  var mapMaker = {};
+  var instance = {};
 
   //creates a google map on the page
-  mapMaker.createMap = function(coords, type){
+  instance.createMap = function(coords, type){
     var location = new google.maps.LatLng(coords.latitude,coords.longitude),
         div = document.getElementById('myDiv'),
         map = createGoogleMapDiv(div, {center: location, zoom: 15}),
@@ -67,6 +67,6 @@ angular.module('distress')
   }
 
   //returning the map factory
-  return mapMaker;
+  return instance;
 });
 

@@ -1,18 +1,18 @@
 angular.module('distress')
 .factory('DataFetcher', ['MapMaker', 'EmergencyNumber', function(MapMaker, EmergencyNumber){
-  var dataFetcher = {};
+  var instance = {};
 
-  dataFetcher.getPoliceMap = function(coords){
+  instance.getPoliceMap = function(coords){
     MapMaker.createMap(coords, 'police');
   };
 
-  dataFetcher.getHospitalMap = function(coords){
+  instance.getHospitalMap = function(coords){
     MapMaker.createMap(coords, 'hospital');
   };
 
-  dataFetcher.getEmergencyNumber = function(coords, callback){
+  instance.getEmergencyNumber = function(coords, callback){
     EmergencyNumber.getIt(coords, callback);
   };
 
-  return dataFetcher;
+  return instance;
 }]);
