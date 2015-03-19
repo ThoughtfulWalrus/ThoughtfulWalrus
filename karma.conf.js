@@ -7,8 +7,10 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: require('./include.conf.js').concat([
+      'node_modules/angular/angular.js',
+      'node_modules/angular-mocks/angular-mocks.js',
       'test/unit/**/*.js',
-      'test/integration/**/*.js'
+      'test/integration/**/*.js',
     ]),
 
     // list of files to exclude
