@@ -15,17 +15,17 @@ angular.module('distress')
   //creates the request for google
   function createGoogleRequest(location, radius, type){
     return {location: location, radius: radius, types: [type]};
-  };
+  }
 
   //creates the map div on the page
   function createGoogleMapDiv(div, options){
     return new google.maps.Map(div, options);
-  };
+  }
 
   //creates google places service for map
   function createGooglePlacesService(map){
     return new google.maps.places.PlacesService(map);
-  };
+  }
 
   //searches nearby on the map, adds pins for the
   //type specified (police station, hospital, etc...)
@@ -38,7 +38,7 @@ angular.module('distress')
         }
       }
     });
-  };
+  }
 
   //creates a marker for the map
   function createMarker(place, map, service) {
@@ -48,7 +48,7 @@ angular.module('distress')
     });
 
     addMarkerClickListener(marker, map, service, place);
-  };
+  }
 
   //creates a click listener for the marker,
   //which will show the name and phone number
@@ -64,7 +64,7 @@ angular.module('distress')
         infoWindow.open(map, marker);
       });
     });
-  };
+  }
 
   //returning the map factory
   return mapMaker;
