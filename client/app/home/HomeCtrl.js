@@ -2,10 +2,7 @@ angular.module('distress')
 .controller('HomeCtrl', ['$scope', '$http', 'DistressButton', 'DataFetcher', 'GeoLocation', function($scope, $http, DistressButton, DataFetcher, GeoLocation){
 
   $scope.emergencyNumber = '';
-
   $scope.locationData = '';
-
-  //initializing to anon.
   $scope.username = 'anon';
 
   //assumes that getLocation has already been run.
