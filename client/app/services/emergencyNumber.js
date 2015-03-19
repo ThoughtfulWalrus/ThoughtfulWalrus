@@ -3,8 +3,8 @@ angular.module('distress')
   var instance = {};
 
   instance.getIt = function(coords, callback){
-    var location = new google.maps.LatLng(coords.latitude, coords.longitude);
-    var request = {location: location, radius: 1000};
+    var location = new google.maps.LatLng(coords.latitude, coords.longitude),
+        request = {location: location, radius: 1000};
 
     //The PlacesService method requires a DOM node for exactly that purpose.
     //That's what #myDiv is for.
@@ -12,14 +12,22 @@ angular.module('distress')
 
     // Initial nearbySearch call returns object contatining place_id
     // required parameter for nested getDetails call
+    // https://developers.google.com/maps/documentation/geocoding/
     service.nearbySearch(request, function(results, status){
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         var placeId = { placeId: results[0].place_id };
 
         service.getDetails(placeId, function(results, status){
           if (status === google.maps.places.PlacesServiceStatus.OK) {
-            var country = results.formatted_address.split(',').slice(-1)[0].trim();
-            var emergencyNumber = countryNumbers[country];
+            var country, emergencyNumber;
+
+            results.address_components.forEach(function(component){
+                if (component.types.indexOf("country") !== -1){
+                    country = component.long_name;
+                }
+            });
+
+            emergencyNumber = countryNumbers[country];
             callback(emergencyNumber);
           }
         });
