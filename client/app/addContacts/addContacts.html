@@ -1,0 +1,17 @@
+<h1>Hello from Contacts!</h1>
+
+<form>
+  Name:<br>
+  <input type="text" name="name" ng-model="contact.name">
+  <br>
+  Phone Number:<br>
+  <input type="tel" name="phone" ng-model="contact.phone">
+  <input type="submit" value="Submit" ng-click="addContact()">
+</form>
+
+<div id="contacts">
+  <div ng-repeat="person in contacts">
+    Name: {{person.name}}
+    PhoneNumber: {{person.phone}}
+  </div>
+</div>
