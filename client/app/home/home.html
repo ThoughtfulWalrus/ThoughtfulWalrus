@@ -1,18 +1,24 @@
-<h1>Hello from home!</h1>
+<div id="home-container">
+  <div id="emergency-number-container">
+    <p>Local emergency number</p>  
+    <div id="emergency-number">
+      {{emergencyNumber}}
+    </div>
+  </div>
 
-<div class="home">
-  {{locationData}}
+  <div id="distress-btn-container">
+    <button id="distress-btn" class="btn" type="button" ng-click="distress()"><img src="img/alert.png" alt="alert img">Distress</button>
+  </div>
+
+  <!-- <div class="home">
+    {{locationData}}
+  </div> -->
+
+  <div id="police-hospital-btn-container">  
+    <p>Local maps</p>
+    <a ui-sref="police_map"><button class="btn" type="button">Police</button></a>
+    <a ui-sref="hospital_map"><button class="btn" type="button" ng-click="hospital()">Hospitals</button></a>
+  </div>
 </div>
 
-<div class="home">
-  {{emergencyNumber}}
-</div>
 
-<div class="home">
-  <button type="button" ng-click="distress()">Distress!</button>
-</div>
-
-
-<div class="home">
-  <button type="button" ng-click="police()">Police!</button>
-</div>

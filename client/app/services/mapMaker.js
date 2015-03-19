@@ -5,7 +5,7 @@ angular.module('distress')
   //creates a google map on the page
   instance.createMap = function(coords, type){
     var location = new google.maps.LatLng(coords.latitude,coords.longitude),
-        div = document.getElementById('myDiv'),
+        div = document.getElementById(type),
         map = createGoogleMapDiv(div, {center: location, zoom: 15}),
         request = createGoogleRequest(location, 1000, type);
 

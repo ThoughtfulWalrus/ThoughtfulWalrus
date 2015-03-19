@@ -1,1 +1,181 @@
+// Import bootstrap styles
 @import 'bootstrap-custom';
+
+///////////////////////////////
+// VARIABLES 
+
+
+// Media query variables
+// Extra small screen / phone
+$screen-xs:                  480px !default;
+//** Deprecated `$screen-xs-min` as of v3.2.0
+$screen-xs-min:              $screen-xs !default;
+
+
+// Small screen / tablet
+//** Deprecated `$screen-sm` as of v3.0.1
+$screen-sm:                  768px !default;
+$screen-sm-min:              $screen-sm !default;
+
+
+// Medium screen / desktop
+//** Deprecated `$screen-md` as of v3.0.1
+$screen-md:                  992px !default;
+$screen-md-min:              $screen-md !default;
+
+// Large screen / wide desktop
+//** Deprecated `$screen-lg` as of v3.0.1
+$screen-lg:                  1200px !default;
+$screen-lg-min:              $screen-lg !default;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xs-max:              ($screen-sm-min - 1) !default;
+$screen-sm-max:              ($screen-md-min - 1) !default;
+$screen-md-max:              ($screen-lg-min - 1) !default;
+
+
+// Font colors
+$red: #DE6262;
+$white: #fff;
+
+
+
+
+///////////////////////////////
+// MAIN CSS 
+
+body {
+  background-color: $red;  
+  color: $white;
+}
+
+.navbar-default {
+  border-radius: 0;
+
+  .navbar-brand {
+    color: $red;
+    font-weight: bold;
+
+    @media(max-width: 767px) {
+      padding-top: 18px;
+    }
+
+  }
+
+  .navbar-toggle {
+    border-color: transparent;
+
+    .icon-bar {
+      background-color: $red;
+      width: 28px;
+      height: 4px;
+      border-radius: 0px;
+    }
+  }
+
+  .navbar-nav {
+    @media (max-width: 767px) {
+      float: right;
+    }
+
+    li > a {
+      color: $red;
+      font-weight: bold;
+    }
+
+  }
+
+}
+
+.btn {
+  background-color: $white;
+  color: $red;
+  border-radius: 0; 
+} 
+
+#emergency-number-container {
+  margin-top: 125px;
+  color: $white;
+  text-align: center;
+  
+  p {
+    margin: 0 0 -44px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 15px;
+  }
+  
+  #emergency-number {
+    color: $white;
+    font-size: 180px;
+    text-align: center;
+  }
+}
+
+#distress-btn-container {
+  text-align: center;
+  margin-bottom: 150px;
+
+  #distress-btn {
+    font-size: 40px;    
+  }
+
+  img {
+    width: 30px;
+    margin-right: 7px;
+    margin-bottom: 8px;
+  }
+
+} 
+
+#police-hospital-btn-container {
+  text-align: center;
+  color: $white;
+
+  p {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .btn {
+    font-size: 20px;
+    width: 150px;
+  }
+
+  #police-img {
+    width: 30px;
+    margin-right: 7px;
+    margin-bottom: 8px;    
+  }
+
+}
+
+#map-container {
+  width: 800px;
+  margin: 50px auto;  
+
+  #police, #hospital {
+    height: 500px; 
+    width: 100%;  
+  }
+
+  p {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 15px;    
+  } 
+
+  .back-btn {
+   margin-bottom: 30px;
+
+   a {
+      color: $white;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+  }
+
+}
+
+
