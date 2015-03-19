@@ -13,6 +13,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
           templateUrl: 'app/signup/signup.html',
           controller: 'SignupController',
           authenticate: false
+      })
+      .state('contacts', {
+          url: '/contacts',
+          templateUrl: 'app/addContacts/addContacts.html',
+          controller: 'ContactController',
+          authenticate: false
       });
 });
 
