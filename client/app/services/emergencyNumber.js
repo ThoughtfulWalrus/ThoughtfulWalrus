@@ -7,8 +7,8 @@ angular.module('distress')
         request = {location: location, radius: 1000};
 
     //The PlacesService method requires a DOM node for exactly that purpose.
-    //That's what #myDiv is for.
-    var service = new google.maps.places.PlacesService(document.getElementById('myDiv'));
+    //That's what #google-div is for on the index.html page.
+    var service = new google.maps.places.PlacesService(document.getElementById('google-div'));
 
     // Initial nearbySearch call returns object contatining place_id
     // required parameter for nested getDetails call

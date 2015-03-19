@@ -22,5 +22,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
           controller: 'ContactController',
           authenticate: false,
           reload: false
+      })
+      .state('police_map', {
+        url: '/police-map',
+        controller: 'PoliceCtrl',
+        templateUrl: 'app/policeMap/police-map.html'
+      })
+      .state('hospital_map', {
+        url: '/hospital-map',
+        controller: 'HospitalCtrl',
+        templateUrl: 'app/hospitalMap/hospital-map.html'
       });
 });
