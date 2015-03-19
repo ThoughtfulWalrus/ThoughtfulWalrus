@@ -27,6 +27,17 @@ module.exports = function(grunt) {
       results: 'results/*'
     },
 
+    // cssmin: {
+    //   options: {
+    //     keepSpecialComments: 0
+    //   },
+    //   dist: {
+    //     files: {
+    //       'public/dist/style.min.css': 'public/style.css'
+    //     }
+    //   }
+    // },
+
     // what files should be linted
     jshint: {
       gruntfile: 'Gruntfile.js',
@@ -133,7 +144,18 @@ module.exports = function(grunt) {
         files: [ 'test/integration/**/*.js' ],
         tasks: [ 'karma:watch:run' ]
       }
-    }
+    },
+
+    shell: {
+      prodServer: {
+        command: 'git push azure master',
+        options: {
+          stdout: true,
+          stderr: true,
+          failOnError: true
+        }
+      }
+    },
   });
 
   // Perform a build
