@@ -2,13 +2,14 @@ HomeCtrl.$inject = ['$scope', '$http', 'DistressButton', 'DataFetcher', 'GeoLoca
 angular.module('distress').controller('HomeCtrl', HomeCtrl);
 
 function HomeCtrl($scope, $http, DistressButton, DataFetcher, GeoLocation){
-  $scope.emergencyNumber = '';
+  $scope.emergencyNumber = DataFetcher.savedNumber || '';
   $scope.locationData = '';
   $scope.username = 'anon';
 
   //assumes that getLocation has already been run.
   //passes location and callback to DataFetcher method, sets emergencyNumber on the DOM
   //using $apply (since it's asynchronous)
+  //store it to Datafetcher.savedNumber so that it persists.
   $scope.getEmergencyNumber = function(){
     var self = this;
     var location = {longitude: GeoLocation.longitude, latitude: GeoLocation.latitude};
@@ -16,6 +17,7 @@ function HomeCtrl($scope, $http, DistressButton, DataFetcher, GeoLocation){
     DataFetcher.getEmergencyNumber(location, function(emergencyNumber){
       this.$apply(function(){
         this.emergencyNumber = emergencyNumber;
+        DataFetcher.savedNumber = emergencyNumber;
       }.bind(this));
     }.bind(self));
   };
