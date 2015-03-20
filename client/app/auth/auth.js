@@ -2,14 +2,14 @@ angular.module('distress')
 
 //creates a factory called 'Auth' which we can
 //inject into our controllers
-.factory('Auth', function($http, $location){
+.factory('Auth', ['$http', '$location', '$window', function($http, $location, $window){
   var auth = {};
 
   //sends a request to the /user/signin route of the server,
   //still need to see what the server will respond with
-  auth.signin = function(user){
+  auth.signIn = function(user){
     return $http({
-      method: 'GET',
+      method: 'POST',
       url: '/user/signin',
       data: user
     }).then(function(response){
@@ -19,7 +19,7 @@ angular.module('distress')
 
   //sends a request to the /user/signup route of the server,
   //still need to see what the server will respond with
-  auth.signup = function(user){
+  auth.signUp = function(user){
     return $http({
       method: 'POST',
       url: '/user/signup',
@@ -31,9 +31,13 @@ angular.module('distress')
 
   //needs to delete token/remove cookie/undo however we do authentication.
   auth.logout = function(){
-    $location.path = '/signin';
-    //TODO
+    $window.localStorage.removeItem('distressAuth');
+    //add location path?
   };
 
+  auth.isAuthenticated =  function(){
+    return !!$window.localStorage.getItem('distressAuth');
+  }
+
   return auth;
-});
+}])

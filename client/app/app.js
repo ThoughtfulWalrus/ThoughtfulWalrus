@@ -1,6 +1,6 @@
 var app = angular.module('distress', ['ui.router']);
 
-app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/');
     $stateProvider
       .state('home', {
@@ -9,10 +9,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
           templateUrl: 'app/home/home.html',
           reload: false
       })
+      .state('signin', {
+          url: '/signin',
+          templateUrl: 'app/signin/signin.html',
+          controller: 'SigninCtrl',
+          authenticate: false,
+          reload: false
+      })
       .state('signup', {
           url: '/signup',
           templateUrl: 'app/signup/signup.html',
-          controller: 'SignupController',
+          controller: 'SignupCtrl',
           authenticate: false,
           reload: false
       })
@@ -33,4 +40,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
         controller: 'HospitalCtrl',
         templateUrl: 'app/hospitalMap/hospital-map.html'
       });
-});
+})
+
+console.log('app loaded successfully');
+
