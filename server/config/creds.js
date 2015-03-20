@@ -1,5 +1,5 @@
 module.exports = {
-    accountSid: 'ACccf76d8c6f7f8e0b5ee84848403790c6',
-    authToken: '684c21da25cabbbc2ceda72a52dae28b',
-    accountPhoneNumber: "+16504828221"
+    accountSid: process.env.TWILIO_ACCOUNT_SID,
+    authToken: process.env.TWILIO_AUTH_TOKEN,
+    accountPhoneNumber: process.env.TWILIO_ACCOUNT_PHONE
 };

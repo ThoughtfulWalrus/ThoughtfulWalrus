@@ -138,9 +138,6 @@ module.exports = function(grunt) {
     },
 
     shell: {
-      deploy: {
-          command: 'git push azure master'
-      },
       serverTest: {
           command: 'node server/server.js & ./node_modules/.bin/mocha --bail test/ServerSpec.js; pkill -n node;'
       },
@@ -156,7 +153,7 @@ module.exports = function(grunt) {
   });
 
   // Deployment task. 
-  grunt.registerTask('deploy', ['build', 'test', 'shell:deploy'])
+  grunt.registerTask('deploy', ['build', 'test', 'shell:prodServer'])
   
   // Perform a build, PLEASE READD JSHINT LATER
   grunt.registerTask('build', ['clean', 'copy', 'concat', 'uglify']);
