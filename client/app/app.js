@@ -15,6 +15,13 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
           authenticate: false,
           reload: false
       })
+      .state('signin', {
+          url: '/signin',
+          templateUrl: 'app/signin/signin.html',
+          controller: 'SigninCtrl',
+          authenticate: false,
+          reload: false
+      })
       .state('signup', {
           url: '/signup',
           templateUrl: 'app/signup/signup.html',
