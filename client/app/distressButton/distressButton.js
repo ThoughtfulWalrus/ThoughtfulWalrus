@@ -12,7 +12,7 @@ angular.module('distress')
     $http({
       method: 'POST',
       url: '/sms/text/',
-      data: username
+      data: {username:username}
     }).then(function(response){
       return response;
     });

@@ -91,15 +91,6 @@ module.exports = function(grunt) {
       }
     },
 
-    shell: {
-            options: {
-                stderr: false
-            },
-            serverTest: {
-                command: 'node server/server.js & ./node_modules/.bin/mocha --bail test/ServerSpec.js; pkill -n node;'
-            }
-        },
-
     // configure karma
     karma: {
       options: {
@@ -147,6 +138,12 @@ module.exports = function(grunt) {
     },
 
     shell: {
+      deploy: {
+          command: 'git push azure master'
+      },
+      serverTest: {
+          command: 'node server/server.js & ./node_modules/.bin/mocha --bail test/ServerSpec.js; pkill -n node;'
+      },
       prodServer: {
         command: 'git push azure master',
         options: {
@@ -158,8 +155,11 @@ module.exports = function(grunt) {
     },
   });
 
-  // Perform a build
-  grunt.registerTask('build', [ 'jshint', 'clean', 'copy', 'concat', 'uglify']);
+  // Deployment task. 
+  grunt.registerTask('deploy', ['build', 'test', 'shell:deploy'])
+  
+  // Perform a build, PLEASE READD JSHINT LATER
+  grunt.registerTask('build', ['clean', 'copy', 'concat', 'uglify']);
 
   // Run client tests once
   grunt.registerTask('testClient', [ 'karma:single' ]);
