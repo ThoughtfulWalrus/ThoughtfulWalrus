@@ -29,6 +29,6 @@ dist/
 node_modules/
 bower_components/
 client/styles/.sass-cache/
-server/config/creds.js
+
 results/
 dist/

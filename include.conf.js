@@ -5,6 +5,8 @@ module.exports = [
   'client/app/app.js',
   'client/app/services/geoLocation.js',
   'client/app/services/dataFetcher.js',
+  'client/app/services/mapMaker.js',
+  'client/app/services/emergencyNumber.js',
   'client/app/auth/auth.js',
   'client/app/distressButton/distressButton.js',
   'client/app/home/HomeCtrl.js',
