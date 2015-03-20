@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-mongoURI = 'mongodb://localhost/walrusdb';
+mongoURI = process.env.MONGO_URI || 'mongodb://localhost/walrusdb';
 
 mongoose.connect(mongoURI);
 
