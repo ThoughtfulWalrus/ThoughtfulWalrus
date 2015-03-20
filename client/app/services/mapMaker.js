@@ -69,4 +69,3 @@ angular.module('distress')
   //returning the map factory
   return instance;
 });
-

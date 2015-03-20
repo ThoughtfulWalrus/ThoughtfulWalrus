@@ -2,7 +2,7 @@
 @import 'bootstrap-custom';
 
 ///////////////////////////////
-// VARIABLES 
+// VARIABLES
 
 
 // Media query variables
@@ -42,10 +42,10 @@ $white: #fff;
 
 
 ///////////////////////////////
-// MAIN CSS 
+// MAIN CSS
 
 body {
-  background-color: $red;  
+  background-color: $red;
   color: $white;
 }
 
@@ -90,21 +90,21 @@ body {
 .btn {
   background-color: $white;
   color: $red;
-  border-radius: 0; 
-} 
+  border-radius: 0;
+}
 
 #emergency-number-container {
   margin-top: 125px;
   color: $white;
   text-align: center;
-  
+
   p {
     margin: 0 0 -44px;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 15px;
   }
-  
+
   #emergency-number {
     color: $white;
     font-size: 180px;
@@ -117,7 +117,7 @@ body {
   margin-bottom: 150px;
 
   #distress-btn {
-    font-size: 40px;    
+    font-size: 40px;
   }
 
   img {
@@ -126,7 +126,7 @@ body {
     margin-bottom: 8px;
   }
 
-} 
+}
 
 #police-hospital-btn-container {
   text-align: center;
@@ -136,7 +136,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 2px;
   }
-  
+
   .btn {
     font-size: 20px;
     width: 150px;
@@ -145,25 +145,25 @@ body {
   #police-img {
     width: 30px;
     margin-right: 7px;
-    margin-bottom: 8px;    
+    margin-bottom: 8px;
   }
 
 }
 
 #map-container {
   width: 800px;
-  margin: 50px auto;  
+  margin: 50px auto;
 
   #police, #hospital {
-    height: 500px; 
-    width: 100%;  
+    height: 500px;
+    width: 100%;
   }
 
   p {
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-size: 15px;    
-  } 
+    font-size: 15px;
+  }
 
   .back-btn {
    margin-bottom: 30px;
@@ -177,5 +177,6 @@ body {
   }
 
 }
+
 
 
