@@ -36,13 +36,8 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         controller: 'HospitalCtrl',
         templateUrl: 'app/hospitalMap/hospital-map.html'
       });
-      
+
       $httpProvider.interceptors.push('AttachTokens');
-})
-.controller('NavigationBarController', function ($scope, Auth) {
-  $scope.showContacts = function(){
-    return Auth.isAuthenticated();
-  }
 })
 .run(function ($rootScope, $state, $stateParams, Auth) {
   // here inside the run phase of angular, our services and controllers
@@ -55,9 +50,10 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams){
     if (toState && toState.authenticate && !Auth.isAuthenticated()) {
       $state.go('home');
-      event.preventDefault(); 
+      event.preventDefault();
     }
   });
 });
+
 console.log('app loaded successfully');
 
