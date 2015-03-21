@@ -1,10 +1,11 @@
-HomeCtrl.$inject = ['$scope', '$http', 'DistressButton', 'DataFetcher', 'GeoLocation']
+HomeCtrl.$inject = ['$scope', '$http', 'DistressButton', 'DataFetcher', 'GeoLocation', 'Auth']
 angular.module('distress').controller('HomeCtrl', HomeCtrl);
 
-function HomeCtrl($scope, $http, DistressButton, DataFetcher, GeoLocation){
+function HomeCtrl($scope, $http, DistressButton, DataFetcher, GeoLocation, Auth){
   $scope.emergencyNumber = DataFetcher.savedNumber || '';
   $scope.locationData = '';
-  $scope.username = 'anon';
+  $scope.isLoggedIn = Auth.isAuthenticated();
+  console.log($scope.isLoggedIn)
 
   //assumes that getLocation has already been run.
   //passes location and callback to DataFetcher method, sets emergencyNumber on the DOM
