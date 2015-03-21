@@ -1,9 +1,9 @@
 angular.module('distress')
 
-.factory('ContactEdit', function($http){
-  var contactEdit = {};
+.factory('ContactEditor', function($http){
+  var contactEditor = {};
 
-  contactEdit.addContact = function(contact){
+  contactEditor.addContact = function(contact){
     return $http({
       method: 'POST',
       url: '/user/addContact',
@@ -11,7 +11,7 @@ angular.module('distress')
     });
   };
 
-  contactEdit.updateContact = function(contact){
+  contactEditor.updateContact = function(contact){
     return $http({
       method: 'POST',
       url: '/user/updateContact',
@@ -19,7 +19,7 @@ angular.module('distress')
     });
   };
 
-  contactEdit.getContacts = function(contact){
+  contactEditor.getContacts = function(contact){
     return $http({
       method: 'GET',
       url: '/user/getContacts'
@@ -27,5 +27,5 @@ angular.module('distress')
       return resp.data;
     });;
   };
-  return contactEdit;
+  return contactEditor;
 });
