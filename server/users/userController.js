@@ -1,6 +1,7 @@
 var User = require('../db/models/user');
 var jwt = require('jwt-simple');
-var Q = require('q')
+var Q = require('q');
+var authToken = require('../config/creds').distressAuthToken;
 
 module.exports.signin = function(req, res, next) {
   var username = req.body.username;
@@ -18,7 +19,7 @@ module.exports.signin = function(req, res, next) {
         return user.comparePasswords(password)
           .then(function(user) {
             if (user) {
-              var token = jwt.encode(user, 'secret');
+              var token = jwt.encode(user, authToken);
               res.json({token: token});
               console.log('Successful login');
             } else {
@@ -53,7 +54,7 @@ module.exports.signup = function(req, res, next) {
         return create(newUser);
       }
     }).then(function(user){
-      var token = jwt.encode(user, 'secret');
+      var token = jwt.encode(user, authToken);
       res.json({token: token});
     }).fail(function(error){
       next(error);
@@ -105,8 +106,7 @@ module.exports.checkAuth =  function (req, res, next) {
      if (!token) {
        next(new Error('No token'));
      } else {
-      //should use app.get('jwtSecret')
-       var user = jwt.decode(token, 'secret');
+       var user = jwt.decode(token, authToken);
 
        var findUser = Q.nbind(User.findOne, User);
        findUser({username: user.username})

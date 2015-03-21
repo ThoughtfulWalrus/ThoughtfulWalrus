@@ -10,10 +10,6 @@ var port = process.env.PORT || 5000;
 // configure our server with all the middleware and and routing
 require('./config/middleware.js')(app, express);
 
-module.exports = app;
-
-// app.set('jwtSecretToken', 'secret');
-
 app.get('/', function(req, res) {
     res.render('index');
     res.end();
@@ -21,3 +17,4 @@ app.get('/', function(req, res) {
 
 console.log('ThoughtfulWalrus is listening on ' + port);
 app.listen(port);
+
