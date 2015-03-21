@@ -1,17 +1,23 @@
-<h1>Hello from Contacts!</h1>
+  <ul class="emergencyHeader" style="list-style-type: none;">
+    <h1>Emergency Contacts</h1>
+    <li><a style='display:inline;'>Last distress on 1/21/2015 at 12:31 AM</a></li>
+  </ul>
 
-<form>
+
+<form style='margin: 25px;'>
   Name:<br>
-  <input type="text" name="name" ng-model="contact.name">
+  <input type="text" style="color: black;" name="name" ng-model="contact.name" placeholder='Contact Name'>
   <br>
   Phone Number:<br>
-  <input type="tel" name="phone" ng-model="contact.phone">
-  <input type="submit" value="Submit" ng-click="addContact()">
+  <input type="tel" style="color: black;" name="phone" ng-model="contact.phone" placeholder='Phone Number'>
+  <input type="submit" style="color: black;" value="Submit" ng-click="addContact()">
 </form>
 
 <div id="contacts">
   <div ng-repeat="person in contacts">
-    Name: {{person.name}}
-    PhoneNumber: {{person.phone}}
+    <div class='contactCard' style="border: 3px solid black; float:left; padding: 25px 25px; margin: 25px;">
+      <div style="margin: 2px;">Name: {{person.name}} </div>
+      <div>PhoneNumber: {{person.phone}}</div>
+    </div>
   </div>
 </div>
