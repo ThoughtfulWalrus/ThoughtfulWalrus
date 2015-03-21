@@ -12,6 +12,8 @@ require('./config/middleware.js')(app, express);
 
 module.exports = app;
 
+// app.set('jwtSecretToken', 'secret');
+
 app.get('/', function(req, res) {
     res.render('index');
     res.end();
