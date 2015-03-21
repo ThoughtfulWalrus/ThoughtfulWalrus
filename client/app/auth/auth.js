@@ -29,10 +29,10 @@ angular.module('distress')
     });
   };
 
-  //needs to delete token/remove cookie/undo however we do authentication.
+  //need to hookup to a button!
   auth.logout = function(){
     $window.localStorage.removeItem('distressAuth');
-    //add location path?
+    $location.path('/');
   };
 
   auth.isAuthenticated =  function(){
