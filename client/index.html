@@ -25,11 +25,11 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div ng-controller='NavigationBarController' class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li><a href="#/signin">Sign In</a></li>
             <li><a href="#/signup">Sign up</a></li>
-            <li><a href="#/contacts">Contacts</a></li>
+            <li ng-show='showContacts()'><a href="#/contacts">Contacts</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -38,8 +38,7 @@
 
 
     <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
-    <div ui-view>
-    </div>
+    <div ui-view></div>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>

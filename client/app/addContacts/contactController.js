@@ -3,6 +3,8 @@ angular.module('distress')
 
   $scope.contacts = [];
 
+  // Will add a contact into the users emergency contacts. 
+  // Then it syncs with the database. 
   $scope.addContact = function(){
     var person = {name: $scope.contact.name, phone: $scope.contact.phone};
 
@@ -13,6 +15,7 @@ angular.module('distress')
     });
   };
 
+  // This function will get all the emergency contacts for a user. 
   $scope.getContacts = function(){
     var contactsFromDB = ContactEdit.getContacts().then(function(result){
       $scope.contacts = result;
@@ -23,13 +26,14 @@ angular.module('distress')
     });
   };
 
+  // This function will update a contact based on the id. 
   $scope.updateContact = function(){
-    console.log(this.person._id);
     ContactEdit.updateContact(this.person).then(function(result){
       this.person.editing = false;
     }.bind(this));
   };
 
+  // This will switch between the editing view and the contact view. 
   $scope.editContact = function(view){
     this.person.editing = true;
   }
