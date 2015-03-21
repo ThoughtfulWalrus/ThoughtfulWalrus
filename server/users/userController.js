@@ -88,7 +88,7 @@ module.exports.updateContact = function(req, res, next) {
                 break;
               }
             }
-  
+
             // Check if the contact already exists
             if(contactToFind === undefined){
               res.status(400).send('Could not find contact with matching id to update.')
@@ -99,7 +99,7 @@ module.exports.updateContact = function(req, res, next) {
               user.save(function(err,user){
                 console.log('Updating contact: ' + contactName + ' for user: ' + user.username);
                 res.status(200).send(user);
-              });           
+              });
             }
           }
         });
