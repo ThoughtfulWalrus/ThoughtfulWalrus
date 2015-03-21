@@ -25,11 +25,11 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div ng-controller='NavigationBarController' class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div ng-controller='NavbarCtrl' class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li><a href="#/signin">Sign In</a></li>
             <li><a href="#/signup">Sign up</a></li>
-            <li ng-show='showContacts()'><a href="#/contacts">Contacts</a></li>
+            <li ng-show="showContacts()"><a href="#/contacts">Contacts</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -58,6 +58,7 @@
     <script src="app/signin/signinCtrl.js"></script>
     <script src="app/policeMap/PoliceCtrl.js"></script>
     <script src="app/hospitalMap/HospitalCtrl.js"></script>
+    <script src="app/navbar/navbarCtrl.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   </body>
 </html>
