@@ -4681,3 +4681,15 @@ body {
   font-weight: bold;
   text-decoration: underline;
 }
+
+.contactCard{
+  border: 3px solid black;
+  float:left; 
+  padding: 10px 10px; 
+  margin: 10px;
+  display: inline-block;
+}
+
+.contactCard:hover{
+  background: blue;
+}

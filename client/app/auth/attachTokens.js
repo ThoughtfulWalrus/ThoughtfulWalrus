@@ -1,5 +1,5 @@
 angular.module('distress')
-.factory('AttachTokens', ['$window', '$httpProvider', function ($window, $httpProvider) {
+.factory('AttachTokens', ['$window', function ($window) {
   // this is an $httpInterceptor
   // its job is to stop all out going request
   // then look in local storage and find the user's token
@@ -17,4 +17,3 @@ angular.module('distress')
   return attach;
 }]);
 
-$httpProvider.interceptors.push('myHttpInterceptor');

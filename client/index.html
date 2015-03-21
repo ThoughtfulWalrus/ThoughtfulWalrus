@@ -25,10 +25,11 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div ng-controller='NavigationBarController' class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li><a href="#/signin">Sign In</a></li>
             <li><a href="#/signup">Sign up</a></li>
+            <li ng-show='showContacts()'><a href="#/contacts">Contacts</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -47,7 +48,9 @@
     <script src="app/services/mapMaker.js"></script>
     <script src="app/services/emergencyNumber.js"></script>
     <script src="app/services/dataFetcher.js"></script>
+    <script src="app/services/contactEdit.js"></script>
     <script src="app/auth/auth.js"></script>
+    <script src="app/auth/attachTokens.js"></script>
     <script src="app/distressButton/distressButton.js"></script>
     <script src="app/home/HomeCtrl.js"></script>
     <script src="app/addContacts/contactController.js"></script>

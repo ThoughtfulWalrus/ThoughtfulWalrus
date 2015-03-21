@@ -1,17 +1,36 @@
-<h1>Hello from Contacts!</h1>
+  <ul class="emergencyHeader" style="list-style-type: none;">
+    <h1>Emergency Contacts</h1>
+    <li><a style='display:inline;'>Last distress on</a></li>
+  </ul>
 
-<form>
+
+<form name='contactForm' style='margin: 25px;' novalidate>
   Name:<br>
-  <input type="text" name="name" ng-model="contact.name">
+  <input type="text" style="color: black;" name="name" ng-model="contact.name" placeholder='Contact Name' ng-class="{'error': contactForm.$invalid && contactForm.$dirty}" required>
   <br>
   Phone Number:<br>
-  <input type="tel" name="phone" ng-model="contact.phone">
-  <input type="submit" value="Submit" ng-click="addContact()">
+  <input type="tel" style="color: black;" name="phone" ng-model="contact.phone" placeholder='Phone Number' required>
+  <input type="submit" style="color: black;" value="Submit" ng-click="addContact()" ng-disabled='contactForm.$invalid'>
 </form>
 
 <div id="contacts">
   <div ng-repeat="person in contacts">
-    Name: {{person.name}}
-    PhoneNumber: {{person.phone}}
+    <div class='contactCard' ng-click='editContact(); $event.stopPropagation()'>
+      <form ng-if='person.editing' name='contactForm' novalidate>
+        Name: <br>
+        <input type="text" style="color: black;" name="name" ng-model="person.name" placeholder='Contact Name' ng-class="{'error': contactForm.$invalid && contactForm.$dirty}" required>
+        <br>
+        Phone Number: <br>
+        <input type="tel" style="color: black;" name="phone" ng-model="person.phone" placeholder='Phone Number' required>
+        <br> <br>
+        <input type="submit" style="color: black;" value="Update" ng-click="updateContact(); $event.stopPropagation()">
+        <input type="submit" style="color: black;" value="Delete" ng-click="editCancel(); $event.stopPropagation()">
+        <input type="submit" style="color: black;" value="Cancel" ng-click="editCancel(); $event.stopPropagation()">
+      </form>
+      <div ng-if='!person.editing'>
+        <div style="margin: 2px;">Name: {{person.name}} </div>
+        <div >Phone Number: {{person.phone}}</div>
+      </div>
+    </div>
   </div>
 </div>
