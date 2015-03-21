@@ -20,7 +20,6 @@ module.exports.signin = function(req, res, next) {
           .then(function(user) {
             if (user) {
               var token = jwt.encode(user, authToken);
-              console.log(user);
               res.json({token: token});
               console.log('Successful login');
             } else {
