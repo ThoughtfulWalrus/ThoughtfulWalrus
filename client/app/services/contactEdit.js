@@ -11,6 +11,14 @@ angular.module('distress')
     });
   };
 
+  contactEdit.updateContact = function(contact){
+    return $http({
+      method: 'POST',
+      url: '/user/updateContact',
+      data: {contact: contact}
+    });
+  };
+
   contactEdit.getContacts = function(contact){
     return $http({
       method: 'GET',

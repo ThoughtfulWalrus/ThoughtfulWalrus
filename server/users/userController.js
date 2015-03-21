@@ -17,8 +17,8 @@ module.exports.signin = function(req, res, next) {
         res.status(401).send('Bad request: User not found');
       } else {
         return user.comparePasswords(password)
-          .then(function(user) {
-            if (user) {
+          .then(function(validPassword) {
+            if (validPassword) {
               var token = jwt.encode(user, authToken);
               res.json({token: token});
               console.log('Successful login');
@@ -61,6 +61,51 @@ module.exports.signup = function(req, res, next) {
     });
 };
 
+module.exports.updateContact = function(req, res, next) {
+  var contactId = req.body.contact._id;
+  var contactName = req.body.contact.name;
+  var contactNumber = req.body.contact.phone;
+
+  var token = req.headers['x-access-token'];
+
+  if (!token) {
+    next(new Error('No token'));
+  } else {
+      var user = jwt.decode(token, authToken);
+
+      User.findOne({ username: user.username })
+        .exec(function(err,user) {
+          if (!user) {
+            res.status(401).send('Unauthorized: User not found!');
+          } else {
+            var contactToFind = undefined;
+
+            for(var i = 0; i < user.emergencyContacts.length; i++){
+              var contact = user.emergencyContacts[i];
+
+              if(contact._id.equals(contactId)) {
+                contactToFind = contact;
+                break;
+              }
+            }
+  
+            // Check if the contact already exists
+            if(contactToFind === undefined){
+              res.status(400).send('Could not find contact with matching id to update.')
+            }
+            else{
+              user.emergencyContacts[i].name = contactName;
+              user.emergencyContacts[i].phone = contactNumber;
+              user.save(function(err,user){
+                console.log('Updating contact: ' + contactName + ' for user: ' + user.username);
+                res.status(200).send(user);
+              });           
+            }
+          }
+        });
+    }
+}
+
 module.exports.addContact = function(req, res, next) {
   var contactName = req.body.contact.name;
   var contactNumber = req.body.contact.phone;
@@ -70,7 +115,7 @@ module.exports.addContact = function(req, res, next) {
   if (!token) {
     next(new Error('No token'));
   } else {
-      var user = jwt.decode(token, 'secret');
+      var user = jwt.decode(token, authToken);
 
       User.findOne({ username: user.username })
         .exec(function(err,user) {
@@ -83,7 +128,7 @@ module.exports.addContact = function(req, res, next) {
             };
 
             var inContactList = user.emergencyContacts.map(function(contact) {
-                                  return contact.contactNumber;
+                                  return contact.phone;
                                 }).indexOf(contactNumber);
 
             // Check if the contact already exists
@@ -108,7 +153,7 @@ module.exports.getContacts = function(req, res, next) {
   if (!token) {
     next(new Error('No token'));
   } else {
-      var user = jwt.decode(token, 'secret');
+      var user = jwt.decode(token, authToken);
 
       User.findOne({ username: user.username })
         .exec(function(err,user) {
@@ -116,7 +161,6 @@ module.exports.getContacts = function(req, res, next) {
             res.status(401).send('User not found!');
           }
           else{
-            console.log(user.emergencyContacts)
             res.status(200).send(user.emergencyContacts);
           }
         });
