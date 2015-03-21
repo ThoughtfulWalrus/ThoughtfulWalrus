@@ -36,6 +36,8 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         controller: 'HospitalCtrl',
         templateUrl: 'app/hospitalMap/hospital-map.html'
       });
+      
+      $httpProvider.interceptors.push('AttachTokens');
 })
 
 console.log('app loaded successfully');

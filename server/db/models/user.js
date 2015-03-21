@@ -7,7 +7,7 @@ var SALT_WORK_FACTOR = 10;
 var userSchema = mongoose.Schema({
   username: {type: String, index: { unique: true }, require: true},
   password:{type: String, require: true},
-  emergencyContacts:[{contactName: String, contactNumber: String}],
+  emergencyContacts:[{name: String, phone: String}],
   salt: String
 });
 

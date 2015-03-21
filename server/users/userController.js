@@ -61,40 +61,68 @@ module.exports.signup = function(req, res, next) {
     });
 };
 
-module.exports.addContact = function(req, res) {
-  var username = req.body.username;
-  var contactName = req.body.contactName;
-  var contactNumber = req.body.contactNumber;
+module.exports.addContact = function(req, res, next) {
+  var contactName = req.body.contact.name;
+  var contactNumber = req.body.contact.phone;
+  console.log('Adding')
+  var token = req.headers['x-access-token'];
 
-  console.log('Adding Contact: ' + contactName + ' for ' + username);
+  if (!token) {
+    next(new Error('No token'));
+  } else {
+      var user = jwt.decode(token, 'secret');
 
-  User.findOne({ username: username })
-    .exec(function(err,user) {
-      if (!user) {
-        res.status(401).send('Unauthorized: User not logged in');
-      } else {
-        var newContact = {
-          contactName: contactName,
-          contactNumber: contactNumber
-        };
+      User.findOne({ username: user.username })
+        .exec(function(err,user) {
+          if (!user) {
+            res.status(401).send('Unauthorized: User not found!');
+          } else {
+            var newContact = {
+              name: contactName,
+              phone: contactNumber
+            };
 
-        var inContactList = user.emergencyContacts.map(function(contact) {
-                              return contact.contactNumber;
-                            }).indexOf(contactNumber);
+            var inContactList = user.emergencyContacts.map(function(contact) {
+                                  return contact.contactNumber;
+                                }).indexOf(contactNumber);
 
-        // Check if the contact already exists
-        if(inContactList === -1){
-          user.emergencyContacts.push(newContact);
+            // Check if the contact already exists
+            if(inContactList === -1){
+              user.emergencyContacts.push(newContact);
 
-          user.save(function(err,user){
-            res.status(200).send(user);
-          });
-        }
-        else{
-          res.status(409).send('Resource exists: Contact already in list');
-        }
-      }
-  });
+              user.save(function(err,user){
+                res.status(200).send(user);
+              });
+            }
+            else{
+              res.status(409).send('Resource exists: Contact already in list');
+            }
+          }
+        });
+    }
+}
+
+module.exports.getContacts = function(req, res, next) {
+  var token = req.headers['x-access-token'];
+
+  if (!token) {
+    next(new Error('No token'));
+  } else {
+      var user = jwt.decode(token, 'secret');
+
+      User.findOne({ username: user.username })
+        .exec(function(err,user) {
+          if (!user) {
+            res.status(401).send('User not found!');
+          }
+          else{
+            console.log(user.emergencyContacts)
+            res.status(200).send(user.emergencyContacts);
+          }
+        });
+    }
+}
+
 
 
 module.exports.checkAuth =  function (req, res, next) {
@@ -121,7 +149,6 @@ module.exports.checkAuth =  function (req, res, next) {
            next(error);
          });
      }
-   }
 };
 
 
