@@ -31,8 +31,11 @@ angular.module('distress')
   };
 
   $scope.editContact = function(view){
-    console.log('editing')
     this.person.editing = true;
+  }
+
+  $scope.editCancel = function(view){
+    this.person.editing = false;
   }
 
   $scope.getContacts();

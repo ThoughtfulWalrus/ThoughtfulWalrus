@@ -22,7 +22,10 @@
         <br>
         Phone Number: <br>
         <input type="tel" style="color: black;" name="phone" ng-model="person.phone" placeholder='Phone Number' required>
+        <br> <br>
         <input type="submit" style="color: black;" value="Update" ng-click="updateContact(); $event.stopPropagation()">
+        <input type="submit" style="color: black;" value="Delete" ng-click="editCancel(); $event.stopPropagation()">
+        <input type="submit" style="color: black;" value="Cancel" ng-click="editCancel(); $event.stopPropagation()">
       </form>
       <div ng-if='!person.editing'>
         <div style="margin: 2px;">Name: {{person.name}} </div>
