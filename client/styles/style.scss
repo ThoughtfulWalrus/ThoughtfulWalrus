@@ -258,12 +258,21 @@ body {
 }
 
 #emergency-contacts-container {
-  width: 400px;
+  width: 300px;
   margin: 0 auto;
+
+  @media (min-width: $screen-sm) {
+    width: 400px;
+  }
 
   h1 {
     text-align: center;
     margin-bottom: 20px;
+    font-size: 25px;
+
+    @media (min-width: $screen-sm) {
+      font-size: 30px;      
+    }
   }
 
   #addcontact-btn {

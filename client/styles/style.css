@@ -4772,65 +4772,78 @@ body .btn {
 
 /* line 260, style.scss */
 #emergency-contacts-container {
-  width: 400px;
+  width: 300px;
   margin: 0 auto;
 }
-/* line 264, style.scss */
+@media (min-width: 768px) {
+  /* line 260, style.scss */
+  #emergency-contacts-container {
+    width: 400px;
+  }
+}
+/* line 268, style.scss */
 #emergency-contacts-container h1 {
   text-align: center;
   margin-bottom: 20px;
+  font-size: 25px;
 }
-/* line 269, style.scss */
+@media (min-width: 768px) {
+  /* line 268, style.scss */
+  #emergency-contacts-container h1 {
+    font-size: 30px;
+  }
+}
+/* line 278, style.scss */
 #emergency-contacts-container #addcontact-btn {
   width: 121px;
   margin-right: auto;
   margin-left: auto;
 }
-/* line 273, style.scss */
+/* line 282, style.scss */
 #emergency-contacts-container #addcontact-btn .btn {
   font-size: 15px;
   font-weight: bold;
 }
-/* line 279, style.scss */
+/* line 288, style.scss */
 #emergency-contacts-container #contact-submit-btn {
   display: block;
   background-color: white;
   color: #de6262;
 }
-/* line 285, style.scss */
+/* line 294, style.scss */
 #emergency-contacts-container .form-group {
   margin-bottom: 20px;
 }
-/* line 289, style.scss */
+/* line 298, style.scss */
 #emergency-contacts-container label {
   display: block;
   font-size: 20px;
 }
-/* line 294, style.scss */
+/* line 303, style.scss */
 #emergency-contacts-container .form-control {
   height: 40px;
 }
-/* line 298, style.scss */
+/* line 307, style.scss */
 #emergency-contacts-container .contactCard {
   margin-bottom: 25px;
 }
-/* line 302, style.scss */
+/* line 311, style.scss */
 #emergency-contacts-container .contact-card-name {
   font-size: 20px;
   font-weight: bold;
   margin-right: 20px;
 }
-/* line 308, style.scss */
+/* line 317, style.scss */
 #emergency-contacts-container .contact-card-phone {
   font-size: 20px;
 }
-/* line 313, style.scss */
+/* line 322, style.scss */
 #emergency-contacts-container #contacts .form-control {
   height: 40px;
   width: 260px;
   margin-bottom: 8px;
 }
-/* line 319, style.scss */
+/* line 328, style.scss */
 #emergency-contacts-container #contacts .btn {
   font-weight: bold;
 }
