@@ -1,36 +1,42 @@
-  <ul class="emergencyHeader" style="list-style-type: none;">
-    <h1>Emergency Contacts</h1>
-    <li><a style='display:inline;'>Last distress on</a></li>
-  </ul>
+<div id="emergency-contacts-container">
+  <h1>Emergency Contacts</h1>
+  <div id="addcontact-btn">
+    <button id="" class="btn btn-default" ng-show="addContactBtn" ng-click="showAddContactForm()">Add Contact</button>    
+  </div>
 
+  <form ng-show="addContactForm" name='contactForm' style='margin: 25px;' novalidate>
+    <div class="form-group">
+      <label for="name">Contact name</label>
+      <input class="form-control" type="text" style="color: black;" name="name" ng-model="contact.name" placeholder='Contact Name' ng-class="{'error': contactForm.$invalid && contactForm.$dirty}" required>
+    </div>
 
-<form name='contactForm' style='margin: 25px;' novalidate>
-  Name:<br>
-  <input type="text" style="color: black;" name="name" ng-model="contact.name" placeholder='Contact Name' ng-class="{'error': contactForm.$invalid && contactForm.$dirty}" required>
-  <br>
-  Phone Number:<br>
-  <input type="tel" style="color: black;" name="phone" ng-model="contact.phone" placeholder='Phone Number' required>
-  <input type="submit" style="color: black;" value="Submit" ng-click="addContact()" ng-disabled='contactForm.$invalid'>
-</form>
+    <div class="form-group">
+      <label for="phone">Phone number</label>
+      <input class="form-control" type="tel" style="color: black;" name="phone" ng-model="contact.phone" placeholder='Phone Number' required>
+    </div>
 
-<div id="contacts">
-  <div ng-repeat="person in contacts">
-    <div class='contactCard' ng-click='editContact(); $event.stopPropagation()'>
-      <form ng-if='person.editing' name='contactForm' novalidate>
-        Name: <br>
-        <input type="text" style="color: black;" name="name" ng-model="person.name" placeholder='Contact Name' ng-class="{'error': contactForm.$invalid && contactForm.$dirty}" required>
-        <br>
-        Phone Number: <br>
-        <input type="tel" style="color: black;" name="phone" ng-model="person.phone" placeholder='Phone Number' required>
-        <br> <br>
-        <input type="submit" style="color: black;" value="Update" ng-click="updateContact(); $event.stopPropagation()">
-        <input type="submit" style="color: black;" value="Delete" ng-click="editCancel(); $event.stopPropagation()">
-        <input type="submit" style="color: black;" value="Cancel" ng-click="editCancel(); $event.stopPropagation()">
-      </form>
-      <div ng-if='!person.editing'>
-        <div style="margin: 2px;">Name: {{person.name}} </div>
-        <div >Phone Number: {{person.phone}}</div>
-        <div >Last Status: {{person.lastMsgStatus}}</div>
+    <button id="contact-submit-btn" class="btn btn-default" type="submit" value="Submit" ng-click="addContact()" ng-disabled='contactForm.$invalid'>Add Contact</button>
+  </form>
+
+  <hr>
+
+  <div id="contacts">
+    <div ng-repeat="person in contacts">
+      <div class='contactCard' ng-click='editContact(); $event.stopPropagation()'>
+        <form ng-if='person.editing' name='contactForm' novalidate>
+          <input class="form-control" type="text" style="color: black;" name="name" ng-model="person.name" placeholder='Contact Name' ng-class="{'error': contactForm.$invalid && contactForm.$dirty}" required>
+          <input class="form-control" type="tel" style="color: black;" name="phone" ng-model="person.phone" placeholder='Phone Number' required>
+          <input class="btn btn-default" type="submit" value="Update" ng-click="updateContact(); $event.stopPropagation()">
+          <input class="btn btn-default" type="submit" value="Delete" ng-click="editCancel(); $event.stopPropagation()">
+          <input class="btn btn-default" type="submit" value="Cancel" ng-click="editCancel(); $event.stopPropagation()">
+        </form>
+
+        <div ng-if='!person.editing'>        
+          <div class="contact-card-name">{{person.name}}</div>                       
+        
+          <div class="contact-card-phone">{{person.phone}}</div>
+        </div>
+
       </div>
     </div>
   </div>

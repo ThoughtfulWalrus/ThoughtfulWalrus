@@ -2,7 +2,7 @@
 @import 'bootstrap-custom';
 
 ///////////////////////////////
-// VARIABLES
+// VARIABLES 
 
 
 // Media query variables
@@ -42,11 +42,27 @@ $white: #fff;
 
 
 ///////////////////////////////
-// MAIN CSS
+// MAIN CSS 
 
 body {
-  background-color: $red;
+  background-color: $red;  
   color: $white;
+
+  a {
+    
+    text-decoration: none;
+
+    &:hover, &:focus  {
+      color: transparent;
+    }
+  }
+
+  .btn {
+    border-color: transparent;
+    color: $red;
+  }
+
+
 }
 
 .navbar-default {
@@ -55,8 +71,9 @@ body {
   .navbar-brand {
     color: $red;
     font-weight: bold;
+    padding-top: 18px;
 
-    @media(max-width: 767px) {
+    @media(min-width: 767px) {
       padding-top: 18px;
     }
 
@@ -74,7 +91,7 @@ body {
   }
 
   .navbar-nav {
-    @media (max-width: 767px) {
+    @media (min-width: $screen-sm) {
       float: right;
     }
 
@@ -90,34 +107,63 @@ body {
 .btn {
   background-color: $white;
   color: $red;
-  border-radius: 0;
-}
+  border-radius: 0; 
+} 
 
 #emergency-number-container {
-  margin-top: 125px;
+  margin-top: 45px;
   color: $white;
   text-align: center;
+  margin-bottom: 30px;
 
-  p {
-    margin: 0 0 -44px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 15px;
+  @media (min-width: $screen-sm) {
+    margin-top: 125px;
+    margin-bottom: 0px;
   }
 
+  
+  p {
+    margin: 0 0 -15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 10px;
+
+    @media (min-width: $screen-sm) {
+      margin: 0 0 -44px;
+      letter-spacing: 2px;
+      font-size: 15px;
+    }
+
+  }
+  
   #emergency-number {
     color: $white;
-    font-size: 180px;
+    font-size: 100px;
     text-align: center;
+
+    @media (min-width: $screen-sm) {
+      font-size: 180px;
+    }
+
   }
 }
 
 #distress-btn-container {
   text-align: center;
-  margin-bottom: 150px;
+  margin-bottom: 90px;
+
+  @media (min-width: $screen-sm) {
+    margin-bottom: 150px;
+  }
+
 
   #distress-btn {
-    font-size: 40px;
+    font-size: 30px;    
+  
+    @media (min-width: $screen-sm) {
+      font-size: 40px;
+    }
+
   }
 
   img {
@@ -126,7 +172,7 @@ body {
     margin-bottom: 8px;
   }
 
-}
+} 
 
 #police-hospital-btn-container {
   text-align: center;
@@ -136,47 +182,154 @@ body {
     text-transform: uppercase;
     letter-spacing: 2px;
   }
-
+  
   .btn {
     font-size: 20px;
     width: 150px;
+
+    @media (min-width: $screen-sm) {
+      font-size: 20px;
+      width: 150px;
+    }
+
   }
 
   #police-img {
     width: 30px;
     margin-right: 7px;
-    margin-bottom: 8px;
+    margin-bottom: 8px;    
   }
 
 }
 
 #map-container {
-  width: 800px;
-  margin: 50px auto;
+  width: 100%;
+  margin: 20px auto;
+  padding: 0 5px;
+
+  @media (min-width: $screen-sm) {
+    width: 800px;
+    margin: 50px auto;
+  }  
 
   #police, #hospital {
-    height: 500px;
-    width: 100%;
+    height: 390px; 
+    width: 100%;  
   }
 
   p {
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 15px;
-  }
+    letter-spacing: 1px;
+    font-size: 10px;  
+
+    @media (min-width: $screen-sm) {
+      font-size: 15px;
+      letter-spacing: 2px;  
+    }
+
+  } 
 
   .back-btn {
    margin-bottom: 30px;
 
    a {
-      color: $white;
+      color: $red;
+      background-color: $white;
       font-weight: bold;
-      text-decoration: underline;
+      padding: 5px;
     }
 
   }
 
 }
 
+#spinner {
+  width: 200px;
+  margin: 80px auto;
 
+  @media (min-width: $screen-sm) {
+    width: 400px;
+    margin: 150px auto;
+  }
+
+  img {
+    width: 100%;
+  }  
+}
+
+#emergency-contacts-container {
+  width: 300px;
+  margin: 0 auto;
+
+  @media (min-width: $screen-sm) {
+    width: 400px;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 25px;
+
+    @media (min-width: $screen-sm) {
+      font-size: 30px;      
+    }
+  }
+
+  #addcontact-btn {
+    width: 121px;
+    margin-right: auto;
+    margin-left: auto;
+    .btn {
+      font-size: 15px;
+      font-weight: bold;
+    }
+  }
+
+  #contact-submit-btn {
+    display: block;
+    background-color: $white;
+    color: $red;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    font-size: 20px;
+  }
+
+  .form-control {
+    height: 40px;
+  }
+
+  .contactCard {
+    margin-bottom: 25px;
+  }
+
+  .contact-card-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 20px;
+  }
+
+  .contact-card-phone {
+    font-size: 20px;
+  }
+
+  #contacts {
+    .form-control {
+      height: 40px;
+      width: 260px;
+      margin-bottom: 8px;            
+    }
+
+    .btn {
+      font-weight: bold;
+    }
+  }
+
+
+}
 

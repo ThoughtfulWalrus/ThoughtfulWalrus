@@ -3,6 +3,15 @@ angular.module('distress')
 
   $scope.contacts = [];
 
+  $scope.addContactForm = false;
+  $scope.addContactBtn = true;
+  
+  $scope.showAddContactForm = function () {
+    $scope.addContactForm = true;
+    $scope.addContactBtn = false;
+  }
+
+
   // Will add a contact into the users emergency contacts. 
   // Then it syncs with the database. 
   $scope.addContact = function(){

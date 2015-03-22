@@ -4551,145 +4551,299 @@ body {
   background-color: #de6262;
   color: white;
 }
+/* line 51, style.scss */
+body a {
+  text-decoration: none;
+}
+/* line 55, style.scss */
+body a:hover, body a:focus {
+  color: transparent;
+}
+/* line 60, style.scss */
+body .btn {
+  border-color: transparent;
+  color: #de6262;
+}
 
-/* line 52, style.scss */
+/* line 68, style.scss */
 .navbar-default {
   border-radius: 0;
 }
-/* line 55, style.scss */
+/* line 71, style.scss */
 .navbar-default .navbar-brand {
   color: #de6262;
   font-weight: bold;
+  padding-top: 18px;
 }
-@media (max-width: 767px) {
-  /* line 55, style.scss */
+@media (min-width: 767px) {
+  /* line 71, style.scss */
   .navbar-default .navbar-brand {
     padding-top: 18px;
   }
 }
-/* line 65, style.scss */
+/* line 82, style.scss */
 .navbar-default .navbar-toggle {
   border-color: transparent;
 }
-/* line 68, style.scss */
+/* line 85, style.scss */
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #de6262;
   width: 28px;
   height: 4px;
   border-radius: 0px;
 }
-@media (max-width: 767px) {
-  /* line 76, style.scss */
+@media (min-width: 768px) {
+  /* line 93, style.scss */
   .navbar-default .navbar-nav {
     float: right;
   }
 }
-/* line 81, style.scss */
+/* line 98, style.scss */
 .navbar-default .navbar-nav li > a {
   color: #de6262;
   font-weight: bold;
 }
 
-/* line 90, style.scss */
+/* line 107, style.scss */
 .btn {
   background-color: white;
   color: #de6262;
   border-radius: 0;
 }
 
-/* line 96, style.scss */
+/* line 113, style.scss */
 #emergency-number-container {
-  margin-top: 125px;
+  margin-top: 45px;
   color: white;
   text-align: center;
+  margin-bottom: 30px;
 }
-/* line 101, style.scss */
+@media (min-width: 768px) {
+  /* line 113, style.scss */
+  #emergency-number-container {
+    margin-top: 125px;
+    margin-bottom: 0px;
+  }
+}
+/* line 125, style.scss */
 #emergency-number-container p {
-  margin: 0 0 -44px;
+  margin: 0 0 -15px;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 15px;
+  letter-spacing: 1px;
+  font-size: 10px;
 }
-/* line 108, style.scss */
+@media (min-width: 768px) {
+  /* line 125, style.scss */
+  #emergency-number-container p {
+    margin: 0 0 -44px;
+    letter-spacing: 2px;
+    font-size: 15px;
+  }
+}
+/* line 139, style.scss */
 #emergency-number-container #emergency-number {
   color: white;
-  font-size: 180px;
+  font-size: 100px;
   text-align: center;
+}
+@media (min-width: 768px) {
+  /* line 139, style.scss */
+  #emergency-number-container #emergency-number {
+    font-size: 180px;
+  }
 }
 
-/* line 115, style.scss */
+/* line 151, style.scss */
 #distress-btn-container {
   text-align: center;
-  margin-bottom: 150px;
+  margin-bottom: 90px;
 }
-/* line 119, style.scss */
+@media (min-width: 768px) {
+  /* line 151, style.scss */
+  #distress-btn-container {
+    margin-bottom: 150px;
+  }
+}
+/* line 160, style.scss */
 #distress-btn-container #distress-btn {
-  font-size: 40px;
+  font-size: 30px;
 }
-/* line 123, style.scss */
+@media (min-width: 768px) {
+  /* line 160, style.scss */
+  #distress-btn-container #distress-btn {
+    font-size: 40px;
+  }
+}
+/* line 169, style.scss */
 #distress-btn-container img {
   width: 30px;
   margin-right: 7px;
   margin-bottom: 8px;
 }
 
-/* line 131, style.scss */
+/* line 177, style.scss */
 #police-hospital-btn-container {
   text-align: center;
   color: white;
 }
-/* line 135, style.scss */
+/* line 181, style.scss */
 #police-hospital-btn-container p {
   text-transform: uppercase;
   letter-spacing: 2px;
 }
-/* line 140, style.scss */
+/* line 186, style.scss */
 #police-hospital-btn-container .btn {
   font-size: 20px;
   width: 150px;
 }
-/* line 145, style.scss */
+@media (min-width: 768px) {
+  /* line 186, style.scss */
+  #police-hospital-btn-container .btn {
+    font-size: 20px;
+    width: 150px;
+  }
+}
+/* line 197, style.scss */
 #police-hospital-btn-container #police-img {
   width: 30px;
   margin-right: 7px;
   margin-bottom: 8px;
 }
 
-/* line 153, style.scss */
+/* line 205, style.scss */
 #map-container {
-  width: 800px;
-  margin: 50px auto;
+  width: 100%;
+  margin: 20px auto;
+  padding: 0 5px;
 }
-/* line 157, style.scss */
+@media (min-width: 768px) {
+  /* line 205, style.scss */
+  #map-container {
+    width: 800px;
+    margin: 50px auto;
+  }
+}
+/* line 215, style.scss */
 #map-container #police, #map-container #hospital {
-  height: 500px;
+  height: 390px;
   width: 100%;
 }
-/* line 162, style.scss */
+/* line 220, style.scss */
 #map-container p {
   text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 15px;
+  letter-spacing: 1px;
+  font-size: 10px;
 }
-/* line 168, style.scss */
+@media (min-width: 768px) {
+  /* line 220, style.scss */
+  #map-container p {
+    font-size: 15px;
+    letter-spacing: 2px;
+  }
+}
+/* line 232, style.scss */
 #map-container .back-btn {
   margin-bottom: 30px;
 }
-/* line 171, style.scss */
+/* line 235, style.scss */
 #map-container .back-btn a {
-  color: white;
+  color: #de6262;
+  background-color: white;
   font-weight: bold;
-  text-decoration: underline;
+  padding: 5px;
 }
 
-.contactCard{
-  border: 3px solid black;
-  float:left; 
-  padding: 10px 10px; 
-  margin: 10px;
-  display: inline-block;
+/* line 246, style.scss */
+#spinner {
+  width: 200px;
+  margin: 80px auto;
+}
+@media (min-width: 768px) {
+  /* line 246, style.scss */
+  #spinner {
+    width: 400px;
+    margin: 150px auto;
+  }
+}
+/* line 255, style.scss */
+#spinner img {
+  width: 100%;
 }
 
-.contactCard:hover{
-  background: blue;
+/* line 260, style.scss */
+#emergency-contacts-container {
+  width: 300px;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  /* line 260, style.scss */
+  #emergency-contacts-container {
+    width: 400px;
+  }
+}
+/* line 268, style.scss */
+#emergency-contacts-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 25px;
+}
+@media (min-width: 768px) {
+  /* line 268, style.scss */
+  #emergency-contacts-container h1 {
+    font-size: 30px;
+  }
+}
+/* line 278, style.scss */
+#emergency-contacts-container #addcontact-btn {
+  width: 121px;
+  margin-right: auto;
+  margin-left: auto;
+}
+/* line 282, style.scss */
+#emergency-contacts-container #addcontact-btn .btn {
+  font-size: 15px;
+  font-weight: bold;
+}
+/* line 288, style.scss */
+#emergency-contacts-container #contact-submit-btn {
+  display: block;
+  background-color: white;
+  color: #de6262;
+}
+/* line 294, style.scss */
+#emergency-contacts-container .form-group {
+  margin-bottom: 20px;
+}
+/* line 298, style.scss */
+#emergency-contacts-container label {
+  display: block;
+  font-size: 20px;
+}
+/* line 303, style.scss */
+#emergency-contacts-container .form-control {
+  height: 40px;
+}
+/* line 307, style.scss */
+#emergency-contacts-container .contactCard {
+  margin-bottom: 25px;
+}
+/* line 311, style.scss */
+#emergency-contacts-container .contact-card-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+/* line 317, style.scss */
+#emergency-contacts-container .contact-card-phone {
+  font-size: 20px;
+}
+/* line 322, style.scss */
+#emergency-contacts-container #contacts .form-control {
+  height: 40px;
+  width: 260px;
+  margin-bottom: 8px;
+}
+/* line 328, style.scss */
+#emergency-contacts-container #contacts .btn {
+  font-weight: bold;
 }
