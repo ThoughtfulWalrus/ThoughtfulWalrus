@@ -8,11 +8,10 @@ angular.module('distress')
   //method sends username to server, which will grab
   //the contactList from the database and send the
   //messages.
-  instance.sendDistress = function(username){
+  instance.sendDistress = function(){
     $http({
       method: 'POST',
       url: '/sms/text/',
-      data: {username:username}
     }).then(function(response){
       return response;
     });

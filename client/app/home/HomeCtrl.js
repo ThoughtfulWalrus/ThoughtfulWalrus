@@ -40,7 +40,7 @@ function HomeCtrl($scope, $http, DistressButton, DataFetcher, GeoLocation, Auth)
 
   //sends distress signal when the button is clicked
   $scope.distress = function(){
-    DistressButton.sendDistress($scope.username);
+    DistressButton.sendDistress();
   };
 
   //gets police station map

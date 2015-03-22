@@ -124,7 +124,8 @@ module.exports.addContact = function(req, res, next) {
           } else {
             var newContact = {
               name: contactName,
-              phone: contactNumber
+              phone: contactNumber,
+              lastMsgStatus: 'N/A'
             };
 
             var inContactList = user.emergencyContacts.map(function(contact) {
@@ -161,6 +162,7 @@ module.exports.getContacts = function(req, res, next) {
             res.status(401).send('User not found!');
           }
           else{
+            console.log(user.emergencyContacts);
             res.status(200).send(user.emergencyContacts);
           }
         });
