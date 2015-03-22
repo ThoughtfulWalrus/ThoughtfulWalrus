@@ -8,6 +8,7 @@ angular.module('distress')
       .then(function (response) {
         $window.localStorage.setItem('distressAuth', response.data.token);
         $location.path('/');
+        $scope.inputError = false;
       })
       .catch(function (error) {
         $scope.inputError = true;
