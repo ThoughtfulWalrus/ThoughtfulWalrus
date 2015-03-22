@@ -47,6 +47,22 @@ $white: #fff;
 body {
   background-color: $red;  
   color: $white;
+
+  a {
+    
+    text-decoration: none;
+
+    &:hover, &:focus  {
+      color: transparent;
+    }
+  }
+
+  .btn {
+    border-color: transparent;
+    color: $red;
+  }
+
+
 }
 
 .navbar-default {
@@ -172,7 +188,7 @@ body {
     width: 150px;
 
     @media (min-width: $screen-sm) {
-      font-size: 40px;
+      font-size: 20px;
       width: 150px;
     }
 
@@ -239,8 +255,73 @@ body {
 
   img {
     width: 100%;
-  }
-  
+  } 
 }
 
+#emergency-contacts-container {
+  width: 400px;
+  margin: 0 auto;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  #addcontact-btn {
+    width: 121px;
+    margin-right: auto;
+    margin-left: auto;
+    .btn {
+      font-size: 15px;
+      font-weight: bold;
+    }
+  }
+
+  #contact-submit-btn {
+    display: block;
+    background-color: $white;
+    color: $red;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    font-size: 20px;
+  }
+
+  .form-control {
+    height: 40px;
+  }
+
+  .contactCard {
+    margin-bottom: 25px;
+  }
+
+  .contact-card-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 20px;
+  }
+
+  .contact-card-phone {
+    font-size: 20px;
+  }
+
+  #contacts {
+    .form-control {
+      height: 40px;
+      width: 260px;
+      margin-bottom: 8px;            
+    }
+
+    .btn {
+      font-weight: bold;
+    }
+  }
+
+
+}
 
