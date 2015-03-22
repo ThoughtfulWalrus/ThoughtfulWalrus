@@ -4,9 +4,9 @@
     .module('distress')
     .controller('HomeCtrl', HomeCtrl);
 
-  HomeCtrl.$inject = ['$scope', '$http', 'DistressButton', 'DataFetcher', 'GeoLocation', 'Auth']
+  HomeCtrl.$inject = ['$scope', 'DistressButton', 'DataFetcher', 'GeoLocation', 'Auth'];
 
-  function HomeCtrl($scope, $http, DistressButton, DataFetcher, GeoLocation, Auth){
+  function HomeCtrl($scope, DistressButton, DataFetcher, GeoLocation, Auth){
     $scope.emergencyNumber = DataFetcher.savedNumber || '';
     $scope.locationData = {};
     $scope.isLoggedIn = Auth.isAuthenticated();
