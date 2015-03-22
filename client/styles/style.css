@@ -4756,94 +4756,104 @@ body .btn {
 /* line 246, style.scss */
 #spinner {
   width: 200px;
+  height: 200px;
   margin: 80px auto;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+/* line 254, style.scss */
+#spinner p {
+  margin-bottom: 15px;
 }
 @media (min-width: 768px) {
   /* line 246, style.scss */
   #spinner {
-    width: 400px;
+    width: 300px;
+    height: 300px;
     margin: 150px auto;
+    letter-spacing: 2px;
   }
 }
-/* line 255, style.scss */
+/* line 265, style.scss */
 #spinner img {
   width: 100%;
 }
 
-/* line 260, style.scss */
+/* line 270, style.scss */
 #emergency-contacts-container {
   width: 300px;
   margin: 0 auto;
 }
 @media (min-width: 768px) {
-  /* line 260, style.scss */
+  /* line 270, style.scss */
   #emergency-contacts-container {
     width: 400px;
   }
 }
-/* line 268, style.scss */
+/* line 278, style.scss */
 #emergency-contacts-container h1 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 25px;
 }
 @media (min-width: 768px) {
-  /* line 268, style.scss */
+  /* line 278, style.scss */
   #emergency-contacts-container h1 {
     font-size: 30px;
   }
 }
-/* line 278, style.scss */
+/* line 288, style.scss */
 #emergency-contacts-container #addcontact-btn {
   width: 121px;
   margin-right: auto;
   margin-left: auto;
 }
-/* line 282, style.scss */
+/* line 292, style.scss */
 #emergency-contacts-container #addcontact-btn .btn {
   font-size: 15px;
   font-weight: bold;
 }
-/* line 288, style.scss */
+/* line 298, style.scss */
 #emergency-contacts-container #contact-submit-btn {
   display: block;
   background-color: white;
   color: #de6262;
 }
-/* line 294, style.scss */
+/* line 304, style.scss */
 #emergency-contacts-container .form-group {
   margin-bottom: 20px;
 }
-/* line 298, style.scss */
+/* line 308, style.scss */
 #emergency-contacts-container label {
   display: block;
   font-size: 20px;
 }
-/* line 303, style.scss */
+/* line 313, style.scss */
 #emergency-contacts-container .form-control {
   height: 40px;
 }
-/* line 307, style.scss */
+/* line 317, style.scss */
 #emergency-contacts-container .contactCard {
   margin-bottom: 25px;
 }
-/* line 311, style.scss */
+/* line 321, style.scss */
 #emergency-contacts-container .contact-card-name {
   font-size: 20px;
   font-weight: bold;
   margin-right: 20px;
 }
-/* line 317, style.scss */
+/* line 327, style.scss */
 #emergency-contacts-container .contact-card-phone {
   font-size: 20px;
 }
-/* line 322, style.scss */
+/* line 332, style.scss */
 #emergency-contacts-container #contacts .form-control {
   height: 40px;
   width: 260px;
   margin-bottom: 8px;
 }
-/* line 328, style.scss */
+/* line 338, style.scss */
 #emergency-contacts-container #contacts .btn {
   font-weight: bold;
 }
