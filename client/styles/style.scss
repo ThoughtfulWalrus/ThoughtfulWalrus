@@ -244,12 +244,16 @@ body {
 }
 
 #spinner {
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
   margin: 80px auto;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1px;
+
+  p {
+    margin-bottom: 15px;
+  }
 
   @media (min-width: $screen-sm) {
     width: 300px;
