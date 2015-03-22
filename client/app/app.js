@@ -23,7 +23,7 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
       .state('contacts', {
           url: '/contacts',
           templateUrl: 'app/addContacts/addContacts.html',
-          controller: 'ContactController',
+          controller: 'ContactCtrl',
           authenticate: true,
       })
       .state('police_map', {

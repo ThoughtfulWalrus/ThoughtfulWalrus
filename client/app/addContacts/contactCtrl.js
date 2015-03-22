@@ -2,7 +2,7 @@
 
   angular
     .module('distress')
-    .controller('ContactController',ContactCtrl);
+    .controller('ContactCtrl', ContactCtrl);
 
   ContactCtrl.$inject = ['$scope', 'ContactEditor'];
 
