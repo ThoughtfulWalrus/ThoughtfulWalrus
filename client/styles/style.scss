@@ -248,11 +248,14 @@ body {
   height: 300px;
   margin: 80px auto;
   text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 
   @media (min-width: $screen-sm) {
     width: 300px;
     height: 300px;
     margin: 150px auto;
+    letter-spacing: 2px;
   }
 
   img {
