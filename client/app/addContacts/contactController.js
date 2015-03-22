@@ -18,7 +18,6 @@ angular.module('distress')
   // This function will get all the emergency contacts for a user. 
   $scope.getContacts = function(){
     var contactsFromDB = ContactEditor.getContacts().then(function(result){
-      console.log(result);
       $scope.contacts = result;
       $scope.contacts.forEach(function(contact){
         if(!contact.editing)
