@@ -4765,72 +4765,72 @@ body .btn {
     margin: 150px auto;
   }
 }
-/* line 256, style.scss */
+/* line 255, style.scss */
 #spinner img {
   width: 100%;
 }
 
-/* line 261, style.scss */
+/* line 260, style.scss */
 #emergency-contacts-container {
   width: 400px;
   margin: 0 auto;
 }
-/* line 265, style.scss */
+/* line 264, style.scss */
 #emergency-contacts-container h1 {
   text-align: center;
   margin-bottom: 20px;
 }
-/* line 270, style.scss */
+/* line 269, style.scss */
 #emergency-contacts-container #addcontact-btn {
   width: 121px;
   margin-right: auto;
   margin-left: auto;
 }
-/* line 274, style.scss */
+/* line 273, style.scss */
 #emergency-contacts-container #addcontact-btn .btn {
   font-size: 15px;
   font-weight: bold;
 }
-/* line 280, style.scss */
+/* line 279, style.scss */
 #emergency-contacts-container #contact-submit-btn {
   display: block;
   background-color: white;
   color: #de6262;
 }
-/* line 286, style.scss */
+/* line 285, style.scss */
 #emergency-contacts-container .form-group {
   margin-bottom: 20px;
 }
-/* line 290, style.scss */
+/* line 289, style.scss */
 #emergency-contacts-container label {
   display: block;
   font-size: 20px;
 }
-/* line 295, style.scss */
+/* line 294, style.scss */
 #emergency-contacts-container .form-control {
   height: 40px;
 }
-/* line 299, style.scss */
+/* line 298, style.scss */
 #emergency-contacts-container .contactCard {
   margin-bottom: 25px;
 }
-/* line 303, style.scss */
+/* line 302, style.scss */
 #emergency-contacts-container .contact-card-name {
   font-size: 20px;
   font-weight: bold;
   margin-right: 20px;
 }
-/* line 309, style.scss */
+/* line 308, style.scss */
 #emergency-contacts-container .contact-card-phone {
   font-size: 20px;
 }
-/* line 314, style.scss */
+/* line 313, style.scss */
 #emergency-contacts-container #contacts .form-control {
   height: 40px;
   width: 260px;
   margin-bottom: 8px;
 }
-/* line 320, style.scss */
+/* line 319, style.scss */
 #emergency-contacts-container #contacts .btn {
   font-weight: bold;
 }

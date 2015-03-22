@@ -14,6 +14,11 @@ function HomeCtrl($scope, $http, DistressButton, DataFetcher, GeoLocation, Auth)
   //passes location and callback to DataFetcher method, sets emergencyNumber on the DOM
   //using $apply (since it's asynchronous)
   //store it to Datafetcher.savedNumber so that it persists.
+  
+  $scope.spinner = true;
+  $scope.homeContent   = false;
+
+
   $scope.getEmergencyNumber = function(){
     var self = this;
     var location = {longitude: GeoLocation.longitude, latitude: GeoLocation.latitude};
