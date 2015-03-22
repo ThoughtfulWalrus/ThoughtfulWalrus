@@ -3,7 +3,7 @@ angular.module('distress').controller('HomeCtrl', HomeCtrl);
 
 function HomeCtrl($scope, $http, DistressButton, DataFetcher, GeoLocation, Auth){
   $scope.emergencyNumber = DataFetcher.savedNumber || '';
-  $scope.locationData = '';
+  $scope.locationData = {};
   $scope.isLoggedIn = Auth.isAuthenticated();
   console.log($scope.isLoggedIn)
 
@@ -43,7 +43,7 @@ function HomeCtrl($scope, $http, DistressButton, DataFetcher, GeoLocation, Auth)
 
     GeoLocation.getLocation(function(lat, lon){
       self.$apply(function(){
-        self.locationData = 'latitude: ' + lat + ' longitude: ' + lon;
+        self.locationData = {latitude: lat, longitude: lon};
       });
       //once we get location data, we get emergency number
       self.getEmergencyNumber();

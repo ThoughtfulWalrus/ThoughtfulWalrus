@@ -162,7 +162,6 @@ module.exports.getContacts = function(req, res, next) {
             res.status(401).send('User not found!');
           }
           else{
-            console.log(user.emergencyContacts);
             res.status(200).send(user.emergencyContacts);
           }
         });
