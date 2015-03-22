@@ -1,6 +1,8 @@
 angular.module('distress')
 .controller('SignupCtrl', ['$scope', '$window', 'Auth', '$location', function($scope, $window, Auth, $location){
   $scope.user = {};
+  $scope.inputError = false;
+
   $scope.signUp = function(){
     Auth.signUp($scope.user)
       .then(function (response) {
@@ -8,7 +10,7 @@ angular.module('distress')
         $location.path('/');
       })
       .catch(function (error) {
-        console.error(error);
+        $scope.inputError = true;
       });
   };
 }]);
