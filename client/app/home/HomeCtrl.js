@@ -10,6 +10,8 @@
     $scope.emergencyNumber = DataFetcher.savedNumber || '';
     $scope.locationData = {};
     $scope.isLoggedIn = Auth.isAuthenticated();
+    
+    // Display loading spinner and hide home content while ajax request is processing
     $scope.spinner = true;
     $scope.homeContent   = false;
 
@@ -24,7 +26,8 @@
       DataFetcher.getEmergencyNumber(location, function(emergencyNumber){
         self.$apply(function(){
           self.emergencyNumber = emergencyNumber;
-          DataFetcher.savedNumber = emergencyNumber;
+          DataFetcher.savedNumber = emergencyNumber;          
+          // When ajax request is complete, hide loading spinner and display home content.
           self.spinner = false;
           self.homeContent = true;
         });
