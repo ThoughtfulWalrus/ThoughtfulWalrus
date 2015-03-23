@@ -4,9 +4,7 @@
     .module('distress')
     .controller('SigninCtrl', SigninCtrl);
 
-
   SigninCtrl.$inject = ['$scope', '$window', 'Auth', '$location'];
-
 
   function SigninCtrl($scope, $window, Auth, $location){
     $scope.user = {};
