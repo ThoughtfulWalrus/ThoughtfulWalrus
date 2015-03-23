@@ -27,17 +27,6 @@ module.exports = function(grunt) {
       results: 'results/*'
     },
 
-    // cssmin: {
-    //   options: {
-    //     keepSpecialComments: 0
-    //   },
-    //   dist: {
-    //     files: {
-    //       'public/dist/style.min.css': 'public/style.css'
-    //     }
-    //   }
-    // },
-
     // what files should be linted
     jshint: {
       gruntfile: 'Gruntfile.js',
@@ -152,9 +141,9 @@ module.exports = function(grunt) {
     },
   });
 
-  // Deployment task. 
-  grunt.registerTask('deploy', ['build', 'test', 'shell:prodServer'])
-  
+  // Deployment task.
+  grunt.registerTask('deploy', ['build', 'test', 'shell:prodServer']);
+
   // Perform a build, PLEASE READD JSHINT LATER
   grunt.registerTask('build', ['clean', 'copy', 'concat', 'uglify']);
 

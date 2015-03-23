@@ -1,0 +1,2 @@
+client/lib/bower_components/**
+server/sms/smsController.js
