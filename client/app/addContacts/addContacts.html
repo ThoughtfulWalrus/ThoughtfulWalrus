@@ -12,7 +12,7 @@
 
     <div class="form-group">
       <label for="phone">Phone number</label>
-      <input class="form-control" type="tel" style="color: black;" name="phone" ng-model="contact.phone" placeholder='Phone Number' required>
+      <input class="form-control" type="tel" style="color: black;" name="phone" ng-model="contact.phone" placeholder='Phone Number (example: 1112223333)' maxlength="10"  pattern="[0-9]{10}" required>
     </div>
 
     <button id="contact-submit-btn" class="btn btn-default" type="submit" value="Submit" ng-click="addContact()" ng-disabled='contactForm.$invalid'>Add Contact</button>
@@ -25,16 +25,21 @@
       <div class='contactCard'>
         <form ng-if='person.editing' name='contactForm' novalidate>
           <input class="form-control" type="text" style="color: black;" name="name" ng-model="person.name" placeholder='Contact Name' ng-class="{'error': contactForm.$invalid && contactForm.$dirty}" required>
-          <input class="form-control" type="tel" style="color: black;" name="phone" ng-model="person.phone" placeholder='Phone Number' required>
-          <input class="btn btn-default" type="submit" value="Update" ng-click="updateContact(person); $event.stopPropagation()">
+          <input class="form-control" type="tel" style="color: black;" name="phone" ng-model="person.phone" placeholder='Phone Number' maxlength="10"  pattern="[0-9]{10}" required>
+          <div class="contact-card-lastMsgStatus">Last distress: {{person.lastMsgStatus}}</div>
+
+          <input class="btn btn-default" type="submit" value="Update" ng-click="updateContact(person); $event.stopPropagation()" ng-disabled='contactForm.$invalid'>
           <input class="btn btn-default" type="submit" value="Delete" ng-click="deleteContact(person); $event.stopPropagation()">
           <input class="btn btn-default" type="submit" value="Cancel" ng-click="editCancel(person); $event.stopPropagation()">
+
         </form>
 
         <div ng-if='!person.editing'>        
           <div class="contact-card-name">{{person.name}}</div>          
           <div class="contact-card-phone">{{person.phone}}</div>
-          <div class="contact-card-lastMsgStatus">Last distress: {{person.lastMsgStatus}}</div>
+          <div class="contact-card-lastMsgStatus">Last distress: {{person.lastMsgStatus.split('.')[0]}}</div>
+        </div>
+
           <div id="edit-contact">
             <a ng-click='editContact(person); $event.stopPropagation()'>Edit contact</a>            
           </div>

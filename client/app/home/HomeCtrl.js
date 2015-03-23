@@ -50,7 +50,18 @@
 
     //sends distress signal when the button is clicked
     $scope.distress = function(){
-      DistressButton.sendDistress();
+      var currentdate = new Date(); 
+      var dateTime = (currentdate.getMonth()+1) + "/" + 
+                      currentdate.getDate() + "/" +
+                      currentdate.getFullYear() + " @ " +  
+                      currentdate.getHours() + ":" +  
+                      currentdate.getMinutes() + ":" + 
+                      currentdate.getSeconds();
+
+      DistressButton.sendDistress(GeoLocation.longitude, 
+                                  GeoLocation.latitude,
+                                  GeoLocation.mapLink,
+                                  dateTime);
     };
 
     //gets police station map
