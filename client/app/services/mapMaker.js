@@ -23,6 +23,7 @@
           map = createGoogleMapDiv(div, {center: location, zoom: 15}),
           request = createGoogleRequest(location, 1000, type);
 
+      setCenterMarker(location, map);
       googleServiceSearch(map, request);
     }
 
@@ -53,6 +54,15 @@
             createMarker(results[i], map, service);
           }
         }
+      });
+    }
+
+    // Creates the center marker for the map
+    function setCenterMarker(location, map) {
+      var marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        icon: '../../img/person.png'
       });
     }
 
