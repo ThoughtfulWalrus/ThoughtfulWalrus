@@ -1,31 +1,47 @@
-angular.module('distress')
+(function(){
 
-.factory('ContactEditor', function($http){
-  var instance = {};
+  angular
+    .module('distress')
+    .factory('ContactEditor', ContactEditor);
 
-  instance.addContact = function(contact){
-    return $http({
-      method: 'POST',
-      url: '/user/addContact',
-      data: {contact: contact}
-    });
-  };
+  ContactEditor.$inject = ['$http'];
 
-  instance.updateContact = function(contact){
-    return $http({
-      method: 'POST',
-      url: '/user/updateContact',
-      data: {contact: contact}
-    });
-  };
+  function ContactEditor($http){
 
-  instance.getContacts = function(contact){
-    return $http({
-      method: 'GET',
-      url: '/user/getContacts'
-    }).then(function (resp) {
-      return resp.data;
-    });;
-  };
-  return instance;
-});
+    var instance = {
+      addContact: addContact,
+      updateContact: updateContact,
+      getContacts: getContacts
+    };
+
+    return instance;
+
+    ////// IMPLEMENTATION ///////
+
+    function addContact(contact){
+      return $http({
+        method: 'POST',
+        url: '/user/addContact',
+        data: {contact: contact}
+      });
+    }
+
+    function updateContact(contact){
+      return $http({
+        method: 'POST',
+        url: '/user/updateContact',
+        data: {contact: contact}
+      });
+    }
+
+    function getContacts(){
+      return $http({
+        method: 'GET',
+        url: '/user/getContacts'
+      }).then(function (resp) {
+        return resp.data;
+      });
+    }
+  }
+})();
+

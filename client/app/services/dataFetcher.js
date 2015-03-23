@@ -1,18 +1,32 @@
-angular.module('distress')
-.factory('DataFetcher', ['MapMaker', 'EmergencyNumber', function(MapMaker, EmergencyNumber){
-  var instance = {};
+(function(){
 
-  instance.getPoliceMap = function(coords){
-    MapMaker.createMap(coords, 'police');
-  };
+  angular
+    .module('distress')
+    .factory('DataFetcher', DataFetcher);
 
-  instance.getHospitalMap = function(coords){
-    MapMaker.createMap(coords, 'hospital');
-  };
+  DataFetcher.$inject = ['MapMaker', 'EmergencyNumber'];
 
-  instance.getEmergencyNumber = function(coords, callback){
-    EmergencyNumber.getIt(coords, callback);
-  };
+  function DataFetcher(MapMaker, EmergencyNumber){
+    var instance = {
+      getPoliceMap: getPoliceMap,
+      getHospitalMap: getHospitalMap,
+      getEmergencyNumber: getEmergencyNumber
+    };
 
-  return instance;
-}]);
+    return instance;
+
+    ///// IMPLEMENTATION /////
+
+    function getPoliceMap(coords){
+      MapMaker.createMap(coords, 'police');
+    }
+
+    function getHospitalMap(coords){
+      MapMaker.createMap(coords, 'hospital');
+    }
+
+    function getEmergencyNumber(coords, callback){
+      EmergencyNumber.getIt(coords, callback);
+    }
+  }
+})();
