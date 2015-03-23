@@ -57,7 +57,6 @@ module.exports.sendMessages = function(req, res) {
 /////////////////////////////////////////////////
 
 /// this initiates the sending of all of the messages
-
 var initiateMessages = function(params){
 
   if(params.user.emergencyContacts.length === 0){
@@ -65,13 +64,14 @@ var initiateMessages = function(params){
     return;
   }else{
     params.user.emergencyContacts.forEach(function(contact, i){
+      //creates promise which will be handled by the
+      // handleTwilioResponse function
       var promise = sendMessage(params.location.latitude,
                                 params.location.longitude,
                                 params.googleMapsLink,
                                 contact.phone);
 
       var options = {
-            promise: promise,
             twilioResponse: {},
             user: params.user,
             counter: params.counter,
@@ -79,16 +79,11 @@ var initiateMessages = function(params){
             res: params.res
           };
 
-      handleTwilioResponse(options);
+      // handles twilio promise
+      handleTwilioResponse(promise, options);
     });
   }
 };
-
-
-
-
-
-
 
 /// This function will begin to send a text message to a contact.
 /// It returns a promise for the asynchronous call to twilio API.
@@ -127,8 +122,8 @@ var createTwilioResponseCallback = function(i, user, timeOfDistress){
 // handles twilio response, saves results to database
 // binding the fin callback to the correct response callback
 // because 'i' will be changing (see function above) and responses are asynchronous
-var handleTwilioResponse = function(params){
-  params.promise.then(function(message) {
+var handleTwilioResponse = function(promise, params){
+  promise.then(function(message) {
     params.twilioResponse.status = 'SUCCESS';
     params.twilioResponse.message = message.sid;
   },function(error) {
