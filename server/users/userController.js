@@ -35,6 +35,8 @@ module.exports.signin = function(req, res, next) {
 module.exports.signup = function(req, res, next) {
   var username = req.body.username;
   var password = req.body.password;
+  var firstName = req.body.firstName;
+  var lastName = req.body.lastName; 
   var create = Q.nbind(User.create, User);
   var findOne = Q.nbind(User.findOne, User);
 
@@ -49,6 +51,8 @@ module.exports.signup = function(req, res, next) {
         var newUser = {
           username: username,
           password: password,
+          firstName: firstName,
+          lastName: lastName, 
           emergencyContacts: []
         };
         return create(newUser);

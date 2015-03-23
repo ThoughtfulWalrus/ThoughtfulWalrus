@@ -4,9 +4,9 @@
     .module('distress')
     .controller('ContactCtrl', ContactCtrl);
 
-  ContactCtrl.$inject = ['$scope', 'ContactEditor','$log'];
+  ContactCtrl.$inject = ['$scope', 'ContactEditor'];
 
-  function ContactCtrl($scope, ContactEditor,$log){
+  function ContactCtrl($scope, ContactEditor){
     $scope.contacts = [];
     $scope.addContactForm = false;
     $scope.addContactBtn = true;
