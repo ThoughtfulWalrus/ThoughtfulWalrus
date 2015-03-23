@@ -30,12 +30,14 @@
           <input class="btn btn-default" type="submit" value="Update" ng-click="updateContact(person); $event.stopPropagation()">
           <input class="btn btn-default" type="submit" value="Delete" ng-click="deleteContact(person); $event.stopPropagation()">
           <input class="btn btn-default" type="submit" value="Cancel" ng-click="editCancel(person); $event.stopPropagation()">
+
         </form>
 
         <div ng-if='!person.editing'>        
           <div class="contact-card-name">{{person.name}}</div>          
           <div class="contact-card-phone">{{person.phone}}</div>
           <div class="contact-card-lastMsgStatus">Last distress: {{person.lastMsgStatus.split('.')[0]}}</div>
+
           <div id="edit-contact">
             <a ng-click='editContact(person); $event.stopPropagation()'>Edit contact</a>            
           </div>
