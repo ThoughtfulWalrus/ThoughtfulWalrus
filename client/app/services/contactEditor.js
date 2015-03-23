@@ -11,7 +11,8 @@
     var instance = {
       addContact: addContact,
       updateContact: updateContact,
-      getContacts: getContacts
+      getContacts: getContacts,
+      deleteContact: deleteContact
     };
 
     return instance;
@@ -30,6 +31,14 @@
       return $http({
         method: 'POST',
         url: '/user/updateContact',
+        data: {contact: contact}
+      });
+    }
+
+    function deleteContact(contact){
+      return $http({
+        method: 'POST',
+        url: '/user/deleteContact',
         data: {contact: contact}
       });
     }

@@ -27,7 +27,7 @@
           <input class="form-control" type="text" style="color: black;" name="name" ng-model="person.name" placeholder='Contact Name' ng-class="{'error': contactForm.$invalid && contactForm.$dirty}" required>
           <input class="form-control" type="tel" style="color: black;" name="phone" ng-model="person.phone" placeholder='Phone Number' required>
           <input class="btn btn-default" type="submit" value="Update" ng-click="updateContact(); $event.stopPropagation()">
-          <input class="btn btn-default" type="submit" value="Delete" ng-click="deleteContact(); $event.stopPropagation()">
+          <input class="btn btn-default" type="submit" value="Delete" ng-click="deleteContact(person); $event.stopPropagation()">
           <input class="btn btn-default" type="submit" value="Cancel" ng-click="editCancel(); $event.stopPropagation()">
         </form>
 

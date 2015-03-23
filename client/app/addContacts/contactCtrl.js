@@ -53,6 +53,13 @@
       this.person.editing = true;
     }
 
+    $scope.deleteContact = function(person){
+      ContactEditor.deleteContact(person).then(function(result){
+        person.editing = false;
+        $scope.getContacts();      
+      });
+    }
+
     $scope.editCancel = function(view){
       this.person.editing = false;
     }
