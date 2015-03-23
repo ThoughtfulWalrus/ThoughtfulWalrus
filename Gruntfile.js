@@ -144,8 +144,8 @@ module.exports = function(grunt) {
   // Deployment task.
   grunt.registerTask('deploy', ['build', 'test', 'shell:prodServer']);
 
-  // Perform a build, PLEASE READD JSHINT LATER
-  grunt.registerTask('build', ['clean', 'copy', 'concat', 'uglify']);
+  // Perform a build
+  grunt.registerTask('build', ['jshint', 'clean', 'copy', 'concat', 'uglify']);
 
   // Run client tests once
   grunt.registerTask('testClient', [ 'karma:single' ]);
