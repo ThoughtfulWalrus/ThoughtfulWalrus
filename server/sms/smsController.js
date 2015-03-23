@@ -12,6 +12,11 @@ var authToken = require('../config/creds').distressAuthToken;
 /// It will send back a 200 code if the SMS was successful.
 /// return: An array of responses from twilio API, each containing {status, message}
 module.exports.sendMessages = function(req, res) {
+    var latitude = req.body.latitude;
+    var longitude = req.body.longitude;
+    var timeOfDistress = req.body.timeOfDistress;
+    var googleMapsLink = req.body.mapLink;
+
     var token = req.headers['x-access-token'];
 
     if (!token) {
@@ -45,7 +50,11 @@ module.exports.sendMessages = function(req, res) {
                     message: 'UNKNOWN'
                 };
 
-                var promise = sendMessage(contactNumber);
+                var promise = sendMessage(latitude, 
+                                          longitude,
+                                          timeOfDistress,
+                                          googleMapsLink,
+                                          contactNumber);
 
                 // Ok so, this shit is crazy. So let me break it down:
                 // 1. The promise is asynchronous.
@@ -68,14 +77,6 @@ module.exports.sendMessages = function(req, res) {
                 // addMessageToResponse. And so when it is eventually called, it has the correct function bound to it. 
                 var addMessageToResponse = (function(idx){
                     return function(twilioResponse){
-                        var currentdate = new Date(); 
-                        var status = twilioResponse.status + " - " + (currentdate.getMonth()+1) + "/"
-                                        + currentdate.getDate() + "/" 
-                                        + currentdate.getFullYear() + " @ "  
-                                        + currentdate.getHours() + ":"  
-                                        + currentdate.getMinutes() + ":" 
-                                        + currentdate.getSeconds();
-
                         user.emergencyContacts[idx].lastMsgStatus = status;
                         twilioReponses[idx] = { status: twilioResponse.status,
                                                 message: twilioResponse.message};
@@ -118,15 +119,20 @@ module.exports.sendMessages = function(req, res) {
 /// This function will begin to send a text message to a contact. It returns
 /// a promise that can be used. 
 /// returns: A promise for the asynchronous call to twilio API.
-var sendMessage = function(recipientPhoneNumber){
+var sendMessage = function(latitude, longitude, timeOfDistress, googleMapsLink, recipientPhoneNumber){
     // Twilio Credentials 
     var accountPhoneNumber = creds.accountPhoneNumber;
 
+    var message = "Distress from username!"
+                  + '\n' + "Latitude: " + latitude
+                  + '\n' + "Longitude: " + longitude
+                  + '\n' + "Google Maps: " + googleMapsLink;
+                  
     // Send the text message
     var promise = twilio.messages.create({ 
         to: "+1" + recipientPhoneNumber, 
         from: accountPhoneNumber, 
-        body: "Hello World",   
+        body: message,   
     });
     return promise;
 }
