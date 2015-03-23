@@ -9,8 +9,7 @@
   function HomeCtrl($scope, DistressButton, DataFetcher, GeoLocation, Auth){
     $scope.emergencyNumber = DataFetcher.savedNumber || '';
     $scope.locationData = {};
-    $scope.isLoggedIn = Auth.isAuthenticated();
-    
+    $scope.isLoggedIn = Auth.isAuthenticated();    
     // Display loading spinner and hide home content while ajax request is processing
     $scope.spinner = true;
     $scope.homeContent   = false;

@@ -22,21 +22,23 @@
 
   <div id="contacts">
     <div ng-repeat="person in contacts">
-      <div class='contactCard' ng-click='editContact(); $event.stopPropagation()'>
+      <div class='contactCard'>
         <form ng-if='person.editing' name='contactForm' novalidate>
           <input class="form-control" type="text" style="color: black;" name="name" ng-model="person.name" placeholder='Contact Name' ng-class="{'error': contactForm.$invalid && contactForm.$dirty}" required>
           <input class="form-control" type="tel" style="color: black;" name="phone" ng-model="person.phone" placeholder='Phone Number' required>
           <input class="btn btn-default" type="submit" value="Update" ng-click="updateContact(); $event.stopPropagation()">
-          <input class="btn btn-default" type="submit" value="Delete" ng-click="editCancel(); $event.stopPropagation()">
+          <input class="btn btn-default" type="submit" value="Delete" ng-click="deleteContact(); $event.stopPropagation()">
           <input class="btn btn-default" type="submit" value="Cancel" ng-click="editCancel(); $event.stopPropagation()">
         </form>
 
         <div ng-if='!person.editing'>        
-          <div class="contact-card-name">{{person.name}}</div>                       
+          <div class="contact-card-name">{{person.name}}</div>          
           <div class="contact-card-phone">{{person.phone}}</div>
           <div class="contact-card-lastMsgStatus">Last distress: {{person.lastMsgStatus}}</div>
+          <div id="edit-contact">
+            <a ng-click='editContact(); $event.stopPropagation()'>Edit contact</a>            
+          </div>
         </div>
-
       </div>
     </div>
   </div>
