@@ -150,34 +150,28 @@ module.exports.deleteContact = function(req, res, next) {
   var contactName = req.body.contact.name;
   var contactId = req.body.contact._id;
   var token = req.headers['x-access-token'];
+  var findOne = Q.nbind(User.findOne, User);
 
   if (!token) {
     next(new Error('No token'));
   } else {
     var user = jwt.decode(token, authToken);
-
-    User.findOne({ username: user.username })
-    .exec(function(err,user) {
-      if (!user) {
-        res.status(401).send('Unauthorized: User not found!');
-      } else {
-        var contactToFind = undefined;
-
-        for(var i = 0; i < user.emergencyContacts.length; i++){
-          var contact = user.emergencyContacts[i];
-
-          if(contact._id.equals(contactId)) {
-            
-            user.emergencyContacts.splice(i, 1);
-
-            user.save(function(err,user){
-              console.log('Deleting contact: ' + contactName + ' for user: ' + user.username);
-              res.status(200).send(user);
-            });
-          }
+    findOne({ username: user.username })
+      .then(function(user, err) {
+        if (!user) {
+          res.status(401).send('Unauthorized: User not found!');
+        } else {
+          user.emergencyContacts.forEach(function(contact, i)  {      
+            if(contact._id.equals(contactId)) {            
+              user.emergencyContacts.splice(i, 1);
+            }
+          });
+          user.save(function(err,user){
+            console.log('Deleting contact: ' + contactName + ' for user: ' + user.username);
+            res.status(200).send(user);
+          });
         }
-      }
-    });        
+      });        
   }
 }
 
