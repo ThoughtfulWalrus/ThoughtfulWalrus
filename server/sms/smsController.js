@@ -64,15 +64,13 @@ var initiateMessages = function(params){
     params.res.status(200).send();
     return;
   }else{
-    var userFullName = params.user.firstName + ' ' + params.user.lastName;
     params.user.emergencyContacts.forEach(function(contact, i){
       //creates promise which will be handled by the
       // handleTwilioResponse function
       var promise = sendMessage(params.location.latitude,
                                 params.location.longitude,
                                 params.googleMapsLink,
-                                contact.phone,
-                                userFullName);
+                                contact.phone);
 
       var options = {
             twilioResponse: {},
@@ -88,25 +86,31 @@ var initiateMessages = function(params){
   }
 };
 
+
+
+
+
+
+
 /// This function will begin to send a text message to a contact.
 /// It returns a promise for the asynchronous call to twilio API.
-var sendMessage = function(latitude, longitude, googleMapsLink, recipientPhoneNumber, userFullName){
-      // Twilio Credentials 
-      var accountPhoneNumber = creds.accountPhoneNumber;
+var sendMessage = function(latitude, longitude, googleMapsLink, recipientPhoneNumber){
+  // Twilio Credentials
+  var accountPhoneNumber = creds.accountPhoneNumber,
+      message = "Distress from username!" +
+                '\n' + "Latitude: " + latitude +
+                '\n' + "Longitude: " + longitude +
+                '\n' + "Google Maps: " + googleMapsLink;
 
-      var message = "Distress from " + userFullName + " !"
-                    + '\n' + "Latitude: " + latitude
-                    + '\n' + "Longitude: " + longitude
-                    + '\n' + "Google Maps: " + googleMapsLink;
+  // Send the text message
+  var promise = twilio.messages.create({
+      to: "+1" + recipientPhoneNumber,
+      from: accountPhoneNumber,
+      body: message,
+  });
 
-      // Send the text message
-      var promise = twilio.messages.create({ 
-          to: "+1" + recipientPhoneNumber, 
-          from: accountPhoneNumber, 
-          body: message,   
-      });
-      return promise;
-  }
+  return promise;
+};
 
 //  creates twilio response callback. want to bind 'i' so
 //  asynchronous responses correspond with the emergency contact
