@@ -52,7 +52,6 @@ module.exports.sendMessages = function(req, res) {
 
                 var promise = sendMessage(latitude, 
                                           longitude,
-                                          timeOfDistress,
                                           googleMapsLink,
                                           contactNumber);
 
@@ -77,7 +76,11 @@ module.exports.sendMessages = function(req, res) {
                 // addMessageToResponse. And so when it is eventually called, it has the correct function bound to it. 
                 var addMessageToResponse = (function(idx){
                     return function(twilioResponse){
-                        user.emergencyContacts[idx].lastMsgStatus = twilioResponse.status + ' - ' + timeOfDistress;
+                        user.emergencyContacts[idx].lastMsgStatus = twilioResponse.status
+                                                                    + ' - ' + timeOfDistress + '. ';
+                        if(twilioResponse.status === 'FAIL'){
+                            user.emergencyContacts[idx].lastMsgStatus += twilioResponse.message
+                        }
                         twilioReponses[idx] = { status: twilioResponse.status,
                                                 message: twilioResponse.message};
                     }
