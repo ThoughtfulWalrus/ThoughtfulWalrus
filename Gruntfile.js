@@ -6,6 +6,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-mocha');
@@ -35,6 +36,19 @@ module.exports = function(grunt) {
       options: {
         globals: {
           eqeqeq: true
+        }
+      }
+    },
+
+    sass: {
+      dev: {
+        files: {
+          'client/styles/style.css':'client/styles/style.scss'
+        }
+      },
+      dist: {
+        files: {
+          'dist/client/styles/style.css':'client/styles/style.scss'
         }
       }
     },
@@ -109,6 +123,10 @@ module.exports = function(grunt) {
         files: [ 'client/**' ],
         tasks: [ 'build', 'karma:watch:run' ]
       },
+      css: {
+        files: 'client/styles/style.scss',
+        tasks: ['sass']
+      },
       server: {
         files: [ 'server/**' ],
         tasks: [ 'build', 'nodemon'],
@@ -145,7 +163,7 @@ module.exports = function(grunt) {
   grunt.registerTask('deploy', ['build', 'test', 'shell:prodServer']);
 
   // Perform a build
-  grunt.registerTask('build', ['jshint', 'clean', 'copy', 'concat', 'uglify']);
+  grunt.registerTask('build', ['sass', 'jshint', 'clean', 'copy', 'concat', 'uglify']);
 
   // Run client tests once
   grunt.registerTask('testClient', [ 'karma:single' ]);
