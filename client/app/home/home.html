@@ -1,25 +1,46 @@
 <div id="spinner" ng-show="spinner">
-  <p>Loading emergency info...</p>
+  <p>Loading emergency info</p>
   <img src="img/loading-circles.svg" alt="">
 </div>
 
 <div id="home-container" ng-show="homeContent">
-  <div id="emergency-number-container">
-    <p>Local emergency number</p>
-    <a href="tel: {{emergencyNumber}} "><div id="emergency-number">
-      {{emergencyNumber}}
-    </div></a>
-  </div>
+  
+  <div id="emergency-number-and-distress-btn-container">
+    <div id="emergency-number-container">
+      <p>Local emergency number</p>
+      <a href="tel: {{emergencyNumber}} "><div id="emergency-number">
+        {{emergencyNumber}}
+      </div></a>
+    </div>
 
-  <div id="distress-btn-container">
-    <button id="distress-btn" class="btn" type="button" ng-click="distress()" ng-show="isLoggedIn"><img src="img/alert.png" alt="alert img">Distress</button>
-  </div>
+    <div id="distress-btn-container" ng-show="distressBtn">      
+      <button id="distress-btn" class="btn" type="button" ng-click="distress()" ng-show="isLoggedIn"><img src="img/alert.png" alt="alert img">Distress</button>
+    </div>
 
+    <div id="msg-status-container">
+      <div id="msgSpinner" ng-show="msgSpinner">
+        <p>sending message...</p>
+        <img src="img/loading-circles.svg" alt="">
+      </div>
+      <div ng-show="sentMsgConf" id="sent-msg-conf">
+        <p>Message sent</p>
+        <button ng-click="distress()" id="msg-sent-btn" class="btn btn-default">Send again</button>
+      </div>      
+    </div>
+  </div>
+  
   <div id="police-hospital-btn-container">
     <p>Local maps</p>
-    <a ui-sref="police_map"><button class="btn" type="button">Police</button></a>
-    <a ui-sref="hospital_map"><button class="btn" type="button" ng-click="hospital()">Hospitals</button></a>
-  </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <a ui-sref="police_map"><button class="btn" type="button">Police</button></a>      
+      </div>  
+      <div class="col-xs-6">
+        <a ui-sref="hospital_map"><button class="btn" type="button" ng-click="hospital()">Hospitals</button></a>    
+      </div>  
+    </div>    
+  </div>    
+
 </div>
 
 

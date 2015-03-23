@@ -11,4 +11,10 @@
       return Auth.isAuthenticated();
     };
   }
+  
+  // Collapse the mobile navbar on click
+  $('.nav a').on('click', function(){      
+      $(".navbar-toggle").click(); 
+  });  
+
 })();

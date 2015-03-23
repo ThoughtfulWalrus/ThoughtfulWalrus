@@ -48,6 +48,10 @@
       });
     };
 
+    $scope.sentMsgConf = false;
+    $scope.distressBtn = true; 
+    $scope.msgSpinner = false;
+
     //sends distress signal when the button is clicked
     $scope.distress = function(){
       var currentdate = new Date(); 
@@ -58,10 +62,21 @@
                       currentdate.getMinutes() + ":" + 
                       currentdate.getSeconds();
 
+      $scope.distressBtn = false;
+      $scope.msgSpinner = true;
+
+      if ($scope.sentMsgConf) {
+        $scope.sentMsgConf = false;
+      }
+
       DistressButton.sendDistress(GeoLocation.longitude, 
                                   GeoLocation.latitude,
                                   GeoLocation.mapLink,
-                                  dateTime);
+                                  dateTime)
+        .then(function(){
+          $scope.msgSpinner = false;
+          $scope.sentMsgConf = true;
+        });
     };
 
     //gets police station map
