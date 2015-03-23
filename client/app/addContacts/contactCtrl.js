@@ -42,19 +42,26 @@
     };
 
     // This function will update a contact based on the id.
-    $scope.updateContact = function(){
-      ContactEditor.updateContact(this.person).then(function(result){
-        this.person.editing = false;
-      }.bind(this));
+    $scope.updateContact = function(person){
+      ContactEditor.updateContact(person).then(function(result){
+        person.editing = false;
+      });
     };
 
     // This will switch between the editing view and the contact view.
-    $scope.editContact = function(view){
-      this.person.editing = true;
+    $scope.editContact = function(person){
+      person.editing = true;
     }
 
-    $scope.editCancel = function(view){
-      this.person.editing = false;
+    $scope.deleteContact = function(person){
+      ContactEditor.deleteContact(person).then(function(result){
+        person.editing = false;
+        $scope.getContacts();      
+      });
+    }
+
+    $scope.editCancel = function(person){
+      person.editing = false;
     }
 
     $scope.getContacts();

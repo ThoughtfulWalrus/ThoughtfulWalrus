@@ -4551,41 +4551,37 @@ body {
   background-color: #de6262;
   color: white;
 }
-/* line 51, style.scss */
-body a {
-  text-decoration: none;
-}
-/* line 55, style.scss */
+/* line 53, style.scss */
 body a:hover, body a:focus {
   color: transparent;
 }
-/* line 60, style.scss */
+/* line 58, style.scss */
 body .btn {
   border-color: transparent;
   color: #de6262;
 }
 
-/* line 68, style.scss */
+/* line 64, style.scss */
 .navbar-default {
   border-radius: 0;
 }
-/* line 71, style.scss */
+/* line 67, style.scss */
 .navbar-default .navbar-brand {
   color: #de6262;
   font-weight: bold;
   padding-top: 18px;
 }
 @media (min-width: 767px) {
-  /* line 71, style.scss */
+  /* line 67, style.scss */
   .navbar-default .navbar-brand {
     padding-top: 18px;
   }
 }
-/* line 82, style.scss */
+/* line 78, style.scss */
 .navbar-default .navbar-toggle {
   border-color: transparent;
 }
-/* line 85, style.scss */
+/* line 81, style.scss */
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #de6262;
   width: 28px;
@@ -4593,25 +4589,25 @@ body .btn {
   border-radius: 0px;
 }
 @media (min-width: 768px) {
-  /* line 93, style.scss */
+  /* line 89, style.scss */
   .navbar-default .navbar-nav {
     float: right;
   }
 }
-/* line 98, style.scss */
+/* line 94, style.scss */
 .navbar-default .navbar-nav li > a {
   color: #de6262;
   font-weight: bold;
 }
 
-/* line 107, style.scss */
+/* line 103, style.scss */
 .btn {
   background-color: white;
   color: #de6262;
   border-radius: 0;
 }
 
-/* line 113, style.scss */
+/* line 109, style.scss */
 #emergency-number-container {
   margin-top: 45px;
   color: white;
@@ -4619,11 +4615,15 @@ body .btn {
   margin-bottom: 30px;
 }
 @media (min-width: 768px) {
-  /* line 113, style.scss */
+  /* line 109, style.scss */
   #emergency-number-container {
     margin-top: 125px;
     margin-bottom: 0px;
   }
+}
+/* line 120, style.scss */
+#emergency-number-container a {
+  text-decoration: none;
 }
 /* line 125, style.scss */
 #emergency-number-container p {
@@ -4856,4 +4856,14 @@ body .btn {
 /* line 338, style.scss */
 #emergency-contacts-container #contacts .btn {
   font-weight: bold;
+}
+/* line 343, style.scss */
+#emergency-contacts-container #edit-contact {
+  margin-top: 10px;
+}
+/* line 346, style.scss */
+#emergency-contacts-container #edit-contact a {
+  text-decoration: underline;
+  color: white;
+  cursor: pointer;
 }

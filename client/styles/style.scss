@@ -48,9 +48,7 @@ body {
   background-color: $red;  
   color: $white;
 
-  a {
-    
-    text-decoration: none;
+  a {  
 
     &:hover, &:focus  {
       color: transparent;
@@ -61,8 +59,6 @@ body {
     border-color: transparent;
     color: $red;
   }
-
-
 }
 
 .navbar-default {
@@ -119,6 +115,10 @@ body {
   @media (min-width: $screen-sm) {
     margin-top: 125px;
     margin-bottom: 0px;
+  }
+
+  a {  
+    text-decoration: none;    
   }
 
   
@@ -340,6 +340,16 @@ body {
     }
   }
 
-
+  #edit-contact {
+    margin-top: 10px;
+    
+    a {
+      text-decoration: underline;
+      color: $white;
+      cursor: pointer;
+      
+    }
+  
+  }
 }
 

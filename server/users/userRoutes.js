@@ -5,5 +5,6 @@ module.exports = function (app) {
   app.post('/signup', userController.signup);
   app.post('/addContact', userController.addContact);
   app.post('/updateContact', userController.updateContact);
+  app.post('/deleteContact', userController.deleteContact);
   app.get('/getContacts', userController.getContacts);
 };
