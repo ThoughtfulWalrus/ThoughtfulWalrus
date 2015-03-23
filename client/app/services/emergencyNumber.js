@@ -1,39 +1,53 @@
-angular.module('distress')
-.factory('EmergencyNumber', function(){
-  var instance = {};
+(function(){
 
-  instance.getIt = function(coords, callback){
-    var location = new google.maps.LatLng(coords.latitude, coords.longitude),
-        request = {location: location, radius: 1000};
+  angular
+    .module('distress')
+    .factory('EmergencyNumber', EmergencyNumber);
 
-    //The PlacesService method requires a DOM node for exactly that purpose.
-    //That's what #google-div is for on the index.html page.
-    var service = new google.maps.places.PlacesService(document.getElementById('google-div'));
+  EmergencyNumber.$inject = [];
 
-    // Initial nearbySearch call returns object contatining place_id
-    // required parameter for nested getDetails call
-    // https://developers.google.com/maps/documentation/geocoding/
-    service.nearbySearch(request, function(results, status){
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-        var placeId = { placeId: results[0].place_id };
+  function EmergencyNumber(){
+    var instance = {
+      getIt: getIt
+    };
 
-        service.getDetails(placeId, function(results, status){
-          if (status === google.maps.places.PlacesServiceStatus.OK) {
-            var country, emergencyNumber;
+    return instance;
 
-            results.address_components.forEach(function(component){
-                if (component.types.indexOf("country") !== -1){
-                    country = component.long_name;
-                }
-            });
+    ///// IMPLEMENTATION /////
 
-            emergencyNumber = countryNumbers[country];
-            callback(emergencyNumber);
-          }
-        });
-      }
-    });
-  };
+    function getIt(coords, callback){
+      var location = new google.maps.LatLng(coords.latitude, coords.longitude),
+          request = {location: location, radius: 1000};
+
+      //The PlacesService method requires a DOM node for exactly that purpose.
+      //That's what #google-div is for on the index.html page.
+      var service = new google.maps.places.PlacesService(document.getElementById('google-div'));
+
+      // Initial nearbySearch call returns object contatining place_id
+      // required parameter for nested getDetails call
+      // https://developers.google.com/maps/documentation/geocoding/
+      service.nearbySearch(request, function(results, status){
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          var placeId = { placeId: results[0].place_id };
+
+          service.getDetails(placeId, function(results, status){
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+              var country, emergencyNumber;
+
+              results.address_components.forEach(function(component){
+                  if (component.types.indexOf("country") !== -1){
+                      country = component.long_name;
+                  }
+              });
+
+              emergencyNumber = countryNumbers[country];
+              callback(emergencyNumber);
+            }
+          });
+        }
+      });
+    }
+  }
 
   //still need to check names
   var countryNumbers = {
@@ -184,6 +198,4 @@ angular.module('distress')
     "Uruguay":"911",
     "Venezuela":"911"
   };
-
-  return instance;
-});
+})();
