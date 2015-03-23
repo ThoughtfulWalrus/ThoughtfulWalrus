@@ -4,9 +4,9 @@
     .module('distress')
     .controller('ContactCtrl', ContactCtrl);
 
-  ContactCtrl.$inject = ['$scope', 'ContactEditor'];
+  ContactCtrl.$inject = ['$scope', 'ContactEditor','$log'];
 
-  function ContactCtrl($scope, ContactEditor){
+  function ContactCtrl($scope, ContactEditor,$log){
     $scope.contacts = [];
     $scope.addContactForm = false;
     $scope.addContactBtn = true;
@@ -27,6 +27,7 @@
           $scope.contact.name = '';
           $scope.contact.phone = '';
         }
+
       });
     };
 
@@ -44,6 +45,8 @@
     // This function will update a contact based on the id.
     $scope.updateContact = function(person){
       ContactEditor.updateContact(person).then(function(result){
+        person.cancelName = person.name;
+        person.cancelPhone = person.phone;
         person.editing = false;
       });
     };
@@ -51,6 +54,8 @@
     // This will switch between the editing view and the contact view.
     $scope.editContact = function(person){
       person.editing = true;
+      person.cancelName = person.name;
+      person.cancelPhone = person.phone;
     }
 
     $scope.deleteContact = function(person){
@@ -61,6 +66,8 @@
     }
 
     $scope.editCancel = function(person){
+      person.name =  person.cancelName;
+      person.phone =  person.cancelPhone;
       person.editing = false;
     }
 
