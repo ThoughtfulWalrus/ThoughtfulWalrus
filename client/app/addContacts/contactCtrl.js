@@ -27,7 +27,6 @@
           $scope.contact.name = '';
           $scope.contact.phone = '';
         }
-
       });
     };
 
