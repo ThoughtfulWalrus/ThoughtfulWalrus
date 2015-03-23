@@ -161,8 +161,8 @@ module.exports.deleteContact = function(req, res, next) {
         if (!user) {
           res.status(401).send('Unauthorized: User not found!');
         } else {
-          user.emergencyContacts.forEach(function(contact, i)  {      
-            if(contact._id.equals(contactId)) {            
+          user.emergencyContacts.forEach(function(contact, i)  {
+            if(contact._id.equals(contactId)) {
               user.emergencyContacts.splice(i, 1);
             }
           });
@@ -171,9 +171,9 @@ module.exports.deleteContact = function(req, res, next) {
             res.status(200).send(user);
           });
         }
-      });        
+      });
   }
-}
+};
 
 module.exports.getContacts = function(req, res, next) {
   var token = req.headers['x-access-token'];
