@@ -81,6 +81,7 @@ module.exports.sendMessages = function(req, res) {
                         if(twilioResponse.status === 'FAIL'){
                             user.emergencyContacts[idx].lastMsgStatus += twilioResponse.message
                         }
+
                         twilioReponses[idx] = { status: twilioResponse.status,
                                                 message: twilioResponse.message};
                     }
