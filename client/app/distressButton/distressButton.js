@@ -4,9 +4,9 @@
     .module('distress')
     .factory('DistressButton', DistressButton);
 
-  DistressButton.$inject = ['$http'];
+  DistressButton.$inject = ['$http', '$state'];
 
-  function DistressButton($http){
+  function DistressButton($http, $state){
 
     var instance = {
       sendDistress: sendDistress
@@ -28,6 +28,7 @@
                mapLink: mapLink, 
                timeOfDistress: dateTime}
       }).then(function(response){
+        $state.go('contacts');
         return response;
       });
     }

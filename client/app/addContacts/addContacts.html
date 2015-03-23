@@ -12,7 +12,7 @@
 
     <div class="form-group">
       <label for="phone">Phone number</label>
-      <input class="form-control" type="tel" style="color: black;" name="phone" ng-model="contact.phone" placeholder='Phone Number' required>
+      <input class="form-control" type="tel" style="color: black;" name="phone" ng-model="contact.phone" placeholder='Phone Number (example: 1112223333)' maxlength="10"  pattern="[0-9]{10}" required>
     </div>
 
     <button id="contact-submit-btn" class="btn btn-default" type="submit" value="Submit" ng-click="addContact()" ng-disabled='contactForm.$invalid'>Add Contact</button>
