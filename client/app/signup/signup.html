@@ -1,6 +1,19 @@
 <div id="sign-up-container">
   <h1>Sign up</h1>
   <form>
+    
+    <div id="sign-up-error" ng-show="inputError">User already exists. Please choose a different username.</div>
+
+    <div class="form-group">
+      <label for="name">First name</label>
+      <input class="form-control" type="text" name="firstname" ng-model="user.firstName" required>
+    </div>
+
+    <div class="form-group">
+      <label for="last">Last name</label>
+      <input class="form-control" type="text" name="lastname" ng-model="user.lastName" required>
+    </div>
+
     <div class="form-group">
       <label for="username">Username</label>
       <input class="form-control" type="text" name="username" ng-model="user.username" required>
