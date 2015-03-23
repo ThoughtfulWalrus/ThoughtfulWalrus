@@ -77,7 +77,7 @@ module.exports.sendMessages = function(req, res) {
                 // addMessageToResponse. And so when it is eventually called, it has the correct function bound to it. 
                 var addMessageToResponse = (function(idx){
                     return function(twilioResponse){
-                        user.emergencyContacts[idx].lastMsgStatus = status;
+                        user.emergencyContacts[idx].lastMsgStatus = twilioResponse.status + ' - ' + timeOfDistress;
                         twilioReponses[idx] = { status: twilioResponse.status,
                                                 message: twilioResponse.message};
                     }
@@ -119,7 +119,7 @@ module.exports.sendMessages = function(req, res) {
 /// This function will begin to send a text message to a contact. It returns
 /// a promise that can be used. 
 /// returns: A promise for the asynchronous call to twilio API.
-var sendMessage = function(latitude, longitude, timeOfDistress, googleMapsLink, recipientPhoneNumber){
+var sendMessage = function(latitude, longitude, googleMapsLink, recipientPhoneNumber){
     // Twilio Credentials 
     var accountPhoneNumber = creds.accountPhoneNumber;
 
@@ -127,7 +127,7 @@ var sendMessage = function(latitude, longitude, timeOfDistress, googleMapsLink, 
                   + '\n' + "Latitude: " + latitude
                   + '\n' + "Longitude: " + longitude
                   + '\n' + "Google Maps: " + googleMapsLink;
-                  
+
     // Send the text message
     var promise = twilio.messages.create({ 
         to: "+1" + recipientPhoneNumber, 
