@@ -27,8 +27,6 @@
                longitude: longitude, 
                mapLink: mapLink, 
                timeOfDistress: dateTime}
-      }).then(function(response){
-        return response;
       });
     }
   }
