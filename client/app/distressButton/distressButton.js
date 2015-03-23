@@ -20,7 +20,7 @@
     //the contactList from the database and send the
     //messages.
     function sendDistress(latitude, longitude, mapLink, dateTime){
-      $http({
+      return $http({
         method: 'POST',
         url: '/sms/text/',
         data: {latitude: latitude, 
@@ -28,7 +28,6 @@
                mapLink: mapLink, 
                timeOfDistress: dateTime}
       }).then(function(response){
-        $state.go('contacts');
         return response;
       });
     }
