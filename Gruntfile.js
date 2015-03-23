@@ -120,7 +120,7 @@ module.exports = function(grunt) {
         tasks: 'jshint:gruntfile'
       },
       client: {
-        files: [ 'client/**' ],
+        files: [ 'client/**', '!client/styles/**' ],
         tasks: [ 'build', 'karma:watch:run' ]
       },
       css: {
