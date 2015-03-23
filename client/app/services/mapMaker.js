@@ -86,7 +86,10 @@
             alert(status);
             return;
           }
-          infoWindow.setContent(result.name + '<br>' + result.formatted_phone_number);
+          var contentString = '<div class="info" style="color: black">'+
+            '<strong>' + result.name + '</strong><br>' +
+            '<em>' + result.formatted_phone_number + '</em>';
+          infoWindow.setContent(contentString);
           infoWindow.open(map, marker);
         });
       });
