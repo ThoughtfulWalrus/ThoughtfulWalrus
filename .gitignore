@@ -32,3 +32,5 @@ client/styles/.sass-cache/
 
 results/
 dist/
+
+server/config/creds.js

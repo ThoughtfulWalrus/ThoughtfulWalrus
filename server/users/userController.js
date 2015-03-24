@@ -1,7 +1,7 @@
 var User = require('../db/models/user');
 var jwt = require('jwt-simple');
 var Q = require('q');
-var authToken = require('../config/creds').distressAuthToken;
+var authToken = process.env.DISTRESS_AUTH_TOKEN || require('../config/creds').distressAuthToken;
 
 module.exports.signin = function(req, res, next) {
   var username = req.body.username;

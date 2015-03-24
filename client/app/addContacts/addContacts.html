@@ -40,7 +40,7 @@
           <div class="contact-card-lastMsgStatus">Last distress: {{person.lastMsgStatus.split('.')[0]}}</div>
         </div>
 
-          <div id="edit-contact">
+          <div ng-if='!person.editing' id="edit-contact">
             <a ng-click='editContact(person); $event.stopPropagation()'>Edit contact</a>            
           </div>
         </div>

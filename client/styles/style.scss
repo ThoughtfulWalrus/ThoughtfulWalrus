@@ -97,7 +97,6 @@ body {
     }
 
   }
-
 }
 
 .btn {
@@ -106,100 +105,134 @@ body {
   border-radius: 0; 
 } 
 
-#emergency-number-container {
-  margin-top: 45px;
-  color: $white;
-  text-align: center;
-  margin-bottom: 30px;
+#emergency-number-and-distress-btn-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 290px;
+  height: 280px;
+  margin-top: -140px;
+  margin-left: -149px;
 
   @media (min-width: $screen-sm) {
-    margin-top: 125px;
-    margin-bottom: 0px;
+    top: 20%;
   }
 
-  a {  
-    text-decoration: none;    
-  }
 
-  
-  p {
-    margin: 0 0 -15px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 10px;
+  #emergency-number-container {    
+    color: $white;
+    text-align: center;
+    margin-bottom: 30px;
 
     @media (min-width: $screen-sm) {
-      margin: 0 0 -44px;
-      letter-spacing: 2px;
-      font-size: 15px;
+      margin-top: 125px;
+      margin-bottom: 0px;
     }
 
+    a {  
+      text-decoration: none;    
+    }
+
+    
+    p {
+      margin: 0 0 -15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 10px;
+
+      @media (min-width: $screen-sm) {
+        margin: 0 0 -44px;
+        letter-spacing: 2px;
+        font-size: 15px;
+      }
+
+    }
+    
+    #emergency-number {
+      color: $white;
+      font-size: 100px;
+      text-align: center;
+
+      @media (min-width: $screen-sm) {
+        font-size: 180px;
+      }
+
+    }
   }
-  
-  #emergency-number {
-    color: $white;
-    font-size: 100px;
+
+  #distress-btn-container {
+    text-align: center;
+    
+    @media (min-width: $screen-sm) {
+     
+    }
+
+    #distress-btn {
+      font-size: 30px;    
+    
+      @media (min-width: $screen-sm) {
+        font-size: 40px;
+      }
+
+    }
+
+    img {
+      width: 30px;
+      margin-right: 7px;
+      margin-bottom: 8px;
+    }
+  }
+
+  #msg-status-container {
     text-align: center;
 
-    @media (min-width: $screen-sm) {
-      font-size: 180px;
+    p {
+      letter-spacing: 2px;      
     }
 
-  }
-}
-
-#distress-btn-container {
-  text-align: center;
-  margin-bottom: 90px;
-
-  @media (min-width: $screen-sm) {
-    margin-bottom: 150px;
-  }
-
-
-  #distress-btn {
-    font-size: 30px;    
-  
-    @media (min-width: $screen-sm) {
-      font-size: 40px;
+    #sent-msg-conf {
+      text-transform: uppercase;
     }
-
-  }
-
-  img {
-    width: 30px;
-    margin-right: 7px;
-    margin-bottom: 8px;
+    
+    #msg-sent-btn {
+      font-size: 10px;
+    }
   }
 
 } 
 
 #police-hospital-btn-container {
-  text-align: center;
   color: $white;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+
+  @media (min-width: $screen-sm) {
+    position: static;
+    width: 338px;
+    margin: 550px auto 0 auto;
+  }
 
   p {
     text-transform: uppercase;
     letter-spacing: 2px;
   }
-  
-  .btn {
-    font-size: 20px;
-    width: 150px;
 
-    @media (min-width: $screen-sm) {
+  .col-xs-6 {
+    padding: 0 1px;   
+    
+    .btn {
       font-size: 20px;
-      width: 150px;
+      width: 100%;
+
+      @media (min-width: $screen-sm) {
+        font-size: 20px;
+        width: 181px;
+      }
     }
-
+  
   }
-
-  #police-img {
-    width: 30px;
-    margin-right: 7px;
-    margin-bottom: 8px;    
-  }
-
 }
 
 #map-container {
@@ -240,7 +273,6 @@ body {
     }
 
   }
-
 }
 
 #spinner {
@@ -253,6 +285,7 @@ body {
 
   p {
     margin-bottom: 15px;
+    text-align: center;
   }
 
   @media (min-width: $screen-sm) {
@@ -267,7 +300,9 @@ body {
   }  
 }
 
-#emergency-contacts-container {
+#emergency-contacts-container,
+#sign-in-container,
+#sign-up-container {
   width: 300px;
   margin: 0 auto;
 
@@ -350,6 +385,16 @@ body {
       
     }
   
+  }
+}
+
+#sign-up-container {
+  #sign-up-error {
+    font-size: 20px;
+    margin: 30px 0;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    padding: 10px;
   }
 }
 
