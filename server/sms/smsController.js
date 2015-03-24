@@ -1,9 +1,9 @@
-var creds = require('./../config/creds.js'),
-    twilio = require('twilio')(creds.accountSid, creds.authToken),
-    User = require('../db/models/user'),
-    jwt = require('jwt-simple'),
-    authToken = require('../config/creds').distressAuthToken,
-    Q = require('q');
+var jwtAuthToken = process.env.DISTRESS_AUTH_TOKEN || require('../config/creds').distressAuthToken;
+var twilioAccountSid = process.env.TWILIO_ACCOUNT_SID || require('../config/creds').accountSid;
+var twilioAuthToken = process.env.TWILIO_AUTH_TOKEN || require('../config/creds').authToken;
+var twilio = require('twilio')(twilioAccountSid, twilioAuthToken);
+var User = require('../db/models/user');
+var jwt = require('jwt-simple');
 
 /// Description: This function will take a username and use Twilio's node API
 /// to send a text message to every number in the users emergency contact list.
@@ -22,7 +22,7 @@ module.exports.sendMessages = function(req, res) {
   if (!token) {
     next(new Error('No token'));
   } else {
-    var user = jwt.decode(token, authToken);
+    var user = jwt.decode(token, jwtAuthToken);
 
     findUser({ username: user.username })
       .then(function(user, err) {
