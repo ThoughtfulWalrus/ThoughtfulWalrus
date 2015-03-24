@@ -27,7 +27,7 @@
         url: '/user/signin',
         data: user
       }).then(function(response){
-        return response;
+        return response;        
       });
     }
 
@@ -42,7 +42,7 @@
         return response;
       });
     }
-
+    
     //need to hookup to a button!
     function logout(){
       $window.localStorage.removeItem('distressAuth');
