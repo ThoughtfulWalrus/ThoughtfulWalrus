@@ -4,9 +4,9 @@
     .module('distress')
     .factory('Auth', Auth);
 
-  Auth.$inject = ['$http', '$location', '$window'];
+  Auth.$inject = ['$http', '$location', '$window', '$state'];
 
-  function Auth($http, $location, $window){
+  function Auth($http, $location, $window, $state){
 
     var instance = {
       signIn: signIn,
@@ -46,7 +46,7 @@
     //need to hookup to a button!
     function logout(){
       $window.localStorage.removeItem('distressAuth');
-      $location.path('/');
+      $state.go($state.current, {}, {reload: true});
     }
 
     function isAuthenticated(){

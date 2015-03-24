@@ -23,12 +23,12 @@ module.exports.signin = function(req, res, next) {
               res.json({token: token});
               console.log('Successful login');
             } else {
-              return next(new Error('No user'));
+              res.status(401).send('Bad request: Incorrect Password');
             }
           });
       }
   }).fail(function(error){
-    next(error);
+    return next(new Error('No user'));
   });
 };
 

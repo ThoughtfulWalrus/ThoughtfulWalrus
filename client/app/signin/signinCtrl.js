@@ -8,6 +8,8 @@
 
   function SigninCtrl($scope, $window, Auth, $location){
     $scope.user = {};
+    $scope.inputError = false;
+
     $scope.signIn = function(){
       Auth.signIn($scope.user)
         .then(function (response) {
@@ -16,7 +18,7 @@
           $location.path('/');
         })
         .catch(function (error) {
-          console.error(error);
+          $scope.inputError = true;
         });
     };
   }
