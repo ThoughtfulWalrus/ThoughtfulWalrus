@@ -4,6 +4,7 @@ var twilioAuthToken = process.env.TWILIO_AUTH_TOKEN || require('../config/creds'
 var twilio = require('twilio')(twilioAccountSid, twilioAuthToken);
 var User = require('../db/models/user');
 var jwt = require('jwt-simple');
+var Q = require('q');
 
 /// Description: This function will take a username and use Twilio's node API
 /// to send a text message to every number in the users emergency contact list.
