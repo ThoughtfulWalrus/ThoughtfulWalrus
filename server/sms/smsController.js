@@ -1,7 +1,6 @@
-var creds = require('../config/creds');
-    jwtAuthToken = process.env.DISTRESS_AUTH_TOKEN || creds.distressAuthToken;
-    twilioAccountSid = process.env.TWILIO_ACCOUNT_SID || creds.accountSid;
-    twilioAuthToken = process.env.TWILIO_AUTH_TOKEN || creds.authToken;
+var jwtAuthToken = process.env.DISTRESS_AUTH_TOKEN || require('../config/creds').distressAuthToken;
+    twilioAccountSid = process.env.TWILIO_ACCOUNT_SID || require('../config/creds').accountSid;
+    twilioAuthToken = process.env.TWILIO_AUTH_TOKEN || require('../config/creds').authToken;
     twilio = require('twilio')(twilioAccountSid, twilioAuthToken);
     User = require('../db/models/user');
     jwt = require('jwt-simple');
@@ -92,7 +91,7 @@ var initiateMessages = function(params){
 /// It returns a promise for the asynchronous call to twilio API.
 var sendMessage = function(latitude, longitude, googleMapsLink, recipientPhoneNumber, userFullName){
       // Twilio Credentials 
-      var accountPhoneNumber = creds.accountPhoneNumber;
+      var accountPhoneNumber = process.env.TWILIO_ACCOUNT_PHONE || require('../config/creds').accountPhoneNumber;
 
       var message = "Distress from " + userFullName + "!"
                     + '\n' + "Latitude: " + latitude
