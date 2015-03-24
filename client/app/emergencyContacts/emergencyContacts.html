@@ -1,7 +1,7 @@
 <div id="emergency-contacts-container">
   <h1>Emergency Contacts</h1>
   <div id="addcontact-btn">
-    <button id="" class="btn btn-default" ng-show="addContactBtn" ng-click="showAddContactForm()">Add Contact</button>    
+    <button id="" class="btn btn-default" ng-show="addContactBtn" ng-click="showAddContactForm()">Add Contact</button>
   </div>
 
   <form ng-show="addContactForm" name='contactForm' style='margin: 25px;' novalidate>
@@ -34,14 +34,14 @@
 
         </form>
 
-        <div ng-if='!person.editing'>        
-          <div class="contact-card-name">{{person.name}}</div>          
+        <div ng-if='!person.editing'>
+          <div class="contact-card-name">{{person.name}}</div>
           <div class="contact-card-phone">{{person.phone}}</div>
           <div class="contact-card-lastMsgStatus">Last distress: {{person.lastMsgStatus.split('.')[0]}}</div>
         </div>
 
           <div ng-if='!person.editing' id="edit-contact">
-            <a ng-click='editContact(person); $event.stopPropagation()'>Edit contact</a>            
+            <a ng-click='editContact(person); $event.stopPropagation()'>Edit contact</a>
           </div>
         </div>
       </div>
