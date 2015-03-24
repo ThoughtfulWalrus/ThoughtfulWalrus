@@ -1,10 +1,11 @@
-var jwtAuthToken = process.env.DISTRESS_AUTH_TOKEN || require('../config/creds').distressAuthToken;
-var twilioAccountSid = process.env.TWILIO_ACCOUNT_SID || require('../config/creds').accountSid;
-var twilioAuthToken = process.env.TWILIO_AUTH_TOKEN || require('../config/creds').authToken;
-var twilio = require('twilio')(twilioAccountSid, twilioAuthToken);
-var User = require('../db/models/user');
-var jwt = require('jwt-simple');
-var Q = require('q');
+var creds = require('../config/creds');
+    jwtAuthToken = process.env.DISTRESS_AUTH_TOKEN || creds.distressAuthToken;
+    twilioAccountSid = process.env.TWILIO_ACCOUNT_SID || creds.accountSid;
+    twilioAuthToken = process.env.TWILIO_AUTH_TOKEN || creds.authToken;
+    twilio = require('twilio')(twilioAccountSid, twilioAuthToken);
+    User = require('../db/models/user');
+    jwt = require('jwt-simple');
+    Q = require('q');
 
 /// Description: This function will take a username and use Twilio's node API
 /// to send a text message to every number in the users emergency contact list.
@@ -43,7 +44,6 @@ module.exports.sendMessages = function(req, res) {
               res: res,
               counter: counter
             };
-
             initiateMessages(messagesOptions);
         }
       }
@@ -105,6 +105,7 @@ var sendMessage = function(latitude, longitude, googleMapsLink, recipientPhoneNu
           from: accountPhoneNumber, 
           body: message,   
       });
+
       return promise;
 }
 
