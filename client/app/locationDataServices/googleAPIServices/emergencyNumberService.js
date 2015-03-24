@@ -105,6 +105,7 @@
     "Sri Lanka":"119",
     "Syria":"112",
     "Republic of China (Taiwan)":"110",
+    "Taiwan":"110",
     "Tajikistan":"112",
     "Thailand":"191",
     "United Arab Emirates":"112",
