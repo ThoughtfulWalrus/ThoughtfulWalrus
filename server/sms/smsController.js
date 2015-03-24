@@ -1,10 +1,10 @@
 var jwtAuthToken = process.env.DISTRESS_AUTH_TOKEN || require('../config/creds').distressAuthToken;
-var twilioAccountSid = process.env.TWILIO_ACCOUNT_SID || require('../config/creds').accountSid;
-var twilioAuthToken = process.env.TWILIO_AUTH_TOKEN || require('../config/creds').authToken;
-var twilio = require('twilio')(twilioAccountSid, twilioAuthToken);
-var User = require('../db/models/user');
-var jwt = require('jwt-simple');
-var Q = require('q');
+    twilioAccountSid = process.env.TWILIO_ACCOUNT_SID || require('../config/creds').accountSid;
+    twilioAuthToken = process.env.TWILIO_AUTH_TOKEN || require('../config/creds').authToken;
+    twilio = require('twilio')(twilioAccountSid, twilioAuthToken);
+    User = require('../db/models/user');
+    jwt = require('jwt-simple');
+    Q = require('q');
 
 /// Description: This function will take a username and use Twilio's node API
 /// to send a text message to every number in the users emergency contact list.
@@ -43,7 +43,6 @@ module.exports.sendMessages = function(req, res) {
               res: res,
               counter: counter
             };
-
             initiateMessages(messagesOptions);
         }
       }
@@ -64,13 +63,15 @@ var initiateMessages = function(params){
     params.res.status(200).send();
     return;
   }else{
+    var userFullName = params.user.firstName + ' ' + params.user.lastName;
     params.user.emergencyContacts.forEach(function(contact, i){
       //creates promise which will be handled by the
       // handleTwilioResponse function
       var promise = sendMessage(params.location.latitude,
                                 params.location.longitude,
                                 params.googleMapsLink,
-                                contact.phone);
+                                contact.phone,
+                                userFullName);
 
       var options = {
             twilioResponse: {},
@@ -88,23 +89,24 @@ var initiateMessages = function(params){
 
 /// This function will begin to send a text message to a contact.
 /// It returns a promise for the asynchronous call to twilio API.
-var sendMessage = function(latitude, longitude, googleMapsLink, recipientPhoneNumber){
-  // Twilio Credentials
-  var accountPhoneNumber = creds.accountPhoneNumber,
-      message = "Distress from username!" +
-                '\n' + "Latitude: " + latitude +
-                '\n' + "Longitude: " + longitude +
-                '\n' + "Google Maps: " + googleMapsLink;
+var sendMessage = function(latitude, longitude, googleMapsLink, recipientPhoneNumber, userFullName){
+      // Twilio Credentials 
+      var accountPhoneNumber = process.env.TWILIO_ACCOUNT_PHONE || require('../config/creds').accountPhoneNumber;
 
-  // Send the text message
-  var promise = twilio.messages.create({
-      to: "+1" + recipientPhoneNumber,
-      from: accountPhoneNumber,
-      body: message,
-  });
+      var message = "Distress from " + userFullName + "!"
+                    + '\n' + "Latitude: " + latitude
+                    + '\n' + "Longitude: " + longitude
+                    + '\n' + "Google Maps: " + googleMapsLink;
 
-  return promise;
-};
+      // Send the text message
+      var promise = twilio.messages.create({ 
+          to: "+1" + recipientPhoneNumber, 
+          from: accountPhoneNumber, 
+          body: message,   
+      });
+
+      return promise;
+}
 
 //  creates twilio response callback. want to bind 'i' so
 //  asynchronous responses correspond with the emergency contact

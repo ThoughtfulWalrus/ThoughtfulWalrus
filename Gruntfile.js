@@ -163,7 +163,7 @@ module.exports = function(grunt) {
   grunt.registerTask('deploy', ['build', 'test', 'shell:prodServer']);
 
   // Perform a build
-  grunt.registerTask('build', ['sass', 'jshint', 'clean', 'copy', 'concat', 'uglify']);
+  grunt.registerTask('build', ['jshint', 'clean', 'copy', 'concat', 'uglify']);
 
   // Run client tests once
   grunt.registerTask('testClient', [ 'karma:single' ]);
