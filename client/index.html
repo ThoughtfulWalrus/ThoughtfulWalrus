@@ -26,15 +26,14 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div ng-controller='NavbarCtrl' class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li ng-show="showContacts()"><a href="#/contacts">Contacts</a></li>
-            <li><a href="#/signin">Sign In</a></li>
-            <li><a href="#/signup">Sign up</a></li>
+            <li ng-show="hideSignInAndOut()"><a href="#/signin">Sign In</a></li>
+            <li ng-show="hideSignInAndOut()"><a href="#/signup">Sign up</a></li>
+            <li ng-show="showContactsAndLogout()"><a href="#/contacts">Contacts</a></li>
+            <li ng-show="showContactsAndLogout()"><a ng-click="logoutUser()">Logout</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-
-
 
     <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
     <div ui-view></div>

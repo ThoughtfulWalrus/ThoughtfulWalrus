@@ -106,7 +106,7 @@ body {
 } 
 
 #emergency-number-and-distress-btn-container {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   width: 290px;
@@ -211,7 +211,7 @@ body {
   @media (min-width: $screen-sm) {
     position: static;
     width: 338px;
-    margin: 550px auto 0 auto;
+    margin: 500px auto 0 auto;
   }
 
   p {

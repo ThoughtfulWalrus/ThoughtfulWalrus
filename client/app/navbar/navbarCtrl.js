@@ -7,9 +7,17 @@
   NavbarCtrl.$inject = ['$scope', 'Auth'];
 
   function NavbarCtrl($scope, Auth){
-    $scope.showContacts = function(){
+    
+    $scope.showContactsAndLogout = function(){
       return Auth.isAuthenticated();
     };
+    $scope.hideSignInAndOut = function(){
+      return !Auth.isAuthenticated();
+    };
+    $scope.logoutUser = function(){
+      return Auth.logout();
+    };
+  
   }
   
   // Collapse the mobile navbar on click

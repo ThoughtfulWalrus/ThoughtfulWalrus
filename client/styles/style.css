@@ -4609,7 +4609,7 @@ body .btn {
 
 /* line 108, style.scss */
 #emergency-number-and-distress-btn-container {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   width: 290px;
@@ -4717,7 +4717,7 @@ body .btn {
   #police-hospital-btn-container {
     position: static;
     width: 338px;
-    margin: 550px auto 0 auto;
+    margin: 500px auto 0 auto;
   }
 }
 /* line 217, style.scss */
