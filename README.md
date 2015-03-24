@@ -38,12 +38,14 @@ Thoughtful Walrus
 
 You will also need a twilio account. Only paid accounts can text any number. You will need to setup twilio credentials in /server/config/creds.js. Inside place something along the lines of:
 
+```javascript
 module.exports = {
  accountSid: 'FFFFFFFFFFFFFFFFF',
- authToken: 'FFFFFFFFFFFFFFFFF',
+ authToken: 'FFFFFFFFFFFFFFFFF', 
  accountPhoneNumber: "+1112223333",
  distressAuthToken: 'FFFFFFFFFFFFFFFFF'
 };
+```
 
 ## Development
 
