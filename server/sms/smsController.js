@@ -94,7 +94,7 @@ var sendMessage = function(latitude, longitude, googleMapsLink, recipientPhoneNu
       // Twilio Credentials 
       var accountPhoneNumber = creds.accountPhoneNumber;
 
-      var message = "Distress from " + userFullName + " !"
+      var message = "Distress from " + userFullName + "!"
                     + '\n' + "Latitude: " + latitude
                     + '\n' + "Longitude: " + longitude
                     + '\n' + "Google Maps: " + googleMapsLink;
