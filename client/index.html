@@ -28,7 +28,7 @@
           <ul class="nav navbar-nav">
             <li ng-show="hideSignInAndOut()"><a href="#/signin">Sign In</a></li>
             <li ng-show="hideSignInAndOut()"><a href="#/signup">Sign up</a></li>
-            <li ng-show="showContactsAndLogout()"><a href="#/contacts">Contacts</a></li>
+            <li ng-show="showContactsAndLogout()"><a href="#/emergencyContacts">Emergency Contacts</a></li>
             <li ng-show="showContactsAndLogout()"><a ng-click="logoutUser()">Logout</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
@@ -45,20 +45,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
     <script src="app/app.js"></script>
-    <script src="app/services/geoLocation.js"></script>
-    <script src="app/services/mapMaker.js"></script>
-    <script src="app/services/emergencyNumber.js"></script>
-    <script src="app/services/dataFetcher.js"></script>
-    <script src="app/services/contactEditor.js"></script>
-    <script src="app/auth/auth.js"></script>
-    <script src="app/auth/attachTokens.js"></script>
-    <script src="app/distressButton/distressButton.js"></script>
-    <script src="app/home/HomeCtrl.js"></script>
-    <script src="app/addContacts/contactCtrl.js"></script>
+    <script src="app/locationDataServices/geoLocationService.js"></script>
+    <script src="app/locationDataServices/googleAPIServices/mapMakerService.js"></script>
+    <script src="app/locationDataServices/googleAPIServices/emergencyNumberService.js"></script>
+    <script src="app/locationDataServices/dataFetcherService.js"></script>
+    <script src="app/emergencyContacts/contactEditorService.js"></script>
+    <script src="app/auth/authService.js"></script>
+    <script src="app/auth/attachTokensService.js"></script>
+    <script src="app/distressButton/distressButtonService.js"></script>
+    <script src="app/home/homeCtrl.js"></script>
+    <script src="app/emergencyContacts/contactCtrl.js"></script>
     <script src="app/signup/signupCtrl.js"></script>
     <script src="app/signin/signinCtrl.js"></script>
-    <script src="app/policeMap/PoliceCtrl.js"></script>
-    <script src="app/hospitalMap/HospitalCtrl.js"></script>
+    <script src="app/policeMap/policeCtrl.js"></script>
+    <script src="app/hospitalMap/hospitalCtrl.js"></script>
     <script src="app/navbar/navbarCtrl.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   </body>
